@@ -247,106 +247,143 @@
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Pending</h2>
+      <h2>Status: DOA Confirmed/DOA  Approved
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Parts Not Available</h3>
+        <h3>Sub-Scenario:  If Technical report (TR) status is avilable</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Inform the customer of delay due to parts availability.</p></li>
-            <li><strong>Post TAT:</strong><p>Escalate and provide new TAT.</p></li>
+            <li><strong>Within TAT:</strong><p>Interaction follow up - if it's within 2 days of TR report
+- Give email ID and TR number , ask the customer to email
+</p></li>
+            <li><strong>Post TAT:</strong><p>Create comaplaint follow up , post 2 days of TR approval
+ - Give email ID and TR number , ask the customer to email
+</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Resolved</h2>
+      <h2>Status: DOA Confirmed/DOA  Approved
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Issue Resolved</h3>
+        <h3>Sub-Scenario:  If Technical report (TR) status is not avilable</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Confirm resolution with the customer.</p></li>
-            <li><strong>Post TAT:</strong><p>Send follow-up survey for feedback.</p></li>
+            <li><strong>Within TAT:</strong><p>Complaint followup(7 series)
+- asap resolution to wait
+</p></li>
+            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
+- asap resolution to wait</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Escalated</h2>
+      <h2>Status: Parts pending
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Issue Escalated</h3>
+        <h3>Sub-Scenario: Always check the change history of previous SO , if the new value status is 'parts pending'
+</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Provide detailed case notes to management.</p
+            <li><strong>Within TAT:</strong><p>Interaction follow up
+- Ask the customer to wait 7-10 working days
+</p
             </li>
-            <li><strong>Post TAT:</strong><p>Update the customer with status.</p></li>
+            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
+ - Ask the customer to wait 7-10 working days
+</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: On Hold</h2>
+      <h2>Status: Customer deferment
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Customer Requested Hold</h3>
+        <h3>Sub-Scenario: Check the customer appointment date in dates coloumn - TAT will me appointment date
+</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Document the reason for hold.</p></li>
-            <li><strong>Post TAT:</strong><p>Contact the customer to resume service.</p></li>
+            <li><strong>Within TAT:</strong><p>Interaction follow up
+ - Just wait for the appointment date
+</p></li>
+            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
+- We give customer as soon as possble appointment date
+</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Closed</h2>
+      <h2>Status: Send To Vender
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Case Successfully Closed</h3>
+        <h3>Sub-Scenario: New value in change history is Send To Vender</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Archive case details and notify the customer.</p></li>
-            <li><strong>Post TAT:</strong><p>Send closure report to management.</p></li>
+            <li><strong>Within TAT:</strong><p>Just wait for the TAT
+ - Interaction follow up
+</p></li>
+            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
+ - We give customer as soon as possble TAT
+</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Awaiting Feedback</h2>
+      <h2>Status: Request for cancellation
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Customer Follow-Up Required</h3>
+        <h3>Sub-Scenario: If SO is within 30 days
+</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Contact the customer for additional details.</p></li>
-            <li><strong>Post TAT:</strong><p>Send a follow-up email requesting feedback.</p></li>
+            <li><strong>Within TAT:</strong><p>Interaction follow up
+ - Inform the customer to wait
+</p></li>
+            <li><strong>Post TAT:</strong><p>Interaction follow up
+ - Inform the customer to wait</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: Under Review</h2>
+      <h2>Status: Completed 
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Pending QA Approval</h3>
+        <h3>Sub-Scenario: If customer comes for a different issue which is Totally different to previous SO
+</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Provide QA team with supporting documents.</p></li>
-            <li><strong>Post TAT:</strong><p>Follow up with QA for expedited approval.</p></li>
+            <li><strong>Within TAT:</strong><p>Create new SO - Share TAT as per SO
+</p></li>
+            <li><strong>Post TAT:</strong><p>Create new SO - Share TAT as per SO</p></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bento-card">
-      <h2>Status: In Progress</h2>
+      <h2>Status: Technical support required
+</h2>
       <div class="sub-scenario">
-        <h3>Sub-Scenario: Technician Assigned</h3>
+        <h3>Sub-Scenario: If new value is Technical support required</h3>
         <div class="action">
           <h4>Action</h4>
           <ul>
-            <li><strong>Within TAT:</strong><p>Inform the customer of the technician details.</p></li>
-            <li><strong>Post TAT:</strong><p>Reschedule the technician visit and notify the customer.</p></li>
+            <li><strong>Within TAT:</strong><p>Just wait for the TAT
+ - Interaction follow up</p></li>
+            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
+ - We give customer as soon as possble TAT</p></li>
           </ul>
         </div>
       </div>

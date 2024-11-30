@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PMS Creation</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Merriweather:wght@700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -101,13 +101,35 @@
         gap: 20px;
       }
 
-      /* Right Side (One Large Card) */
+      /* Right Side (Unique Large Box Design) */
       .right-side {
         flex: 1.5;
         padding: 20px;
-        background-color: #2d3748; /* Dark Blue */
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        background-color: #1e293b; /* Dark Blue */
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(145deg, #1e293b, #2d3748);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .right-side h2 {
+        font-family: "Merriweather", serif; /* New serif font for the title */
+        font-size: 2.2rem;
+        color: #38bdf8;
+        margin-bottom: 15px;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .right-side ul {
+        font-family: "Roboto", sans-serif;
+        font-size: 1.1rem;
+        color: #e5e7eb;
+        line-height: 1.8;
+        padding-left: 20px;
+        list-style-type: square;
       }
 
       /* Bento Card Styling */
@@ -136,7 +158,17 @@
         font-family: "Lora", serif;
         font-size: 1rem;
         color: #e5e7eb;
-        line-height: 1.8; /* Proper Line Spacing */
+        line-height: 1.8;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       /* Footer Styling */
@@ -170,12 +202,8 @@
           padding: 20px;
         }
 
-        .bento-card h2 {
-          font-size: 1.5rem;
-        }
-
-        .bento-card ul {
-          font-size: 0.9rem;
+        .right-side h2 {
+          font-size: 1.8rem;
         }
       }
 
@@ -250,15 +278,18 @@
         <h2>How to Create PMS</h2>
         <ul>
           <li>Log into the service order management system.</li>
-          <li>Navigate to the "Preventive Maintenance" section.</li>
-          <li>Choose the equipment or asset requiring maintenance.</li>
+          <li>Navigate to the " Preventive Maintenance" section.</li>
+          <li>Select the equipment or asset requiring PMS from the list.</li>
           <li>
-            Fill in details such as service type, date, and responsible team.
+            Input the necessary details such as the maintenance type, date, and
+            priority level.
           </li>
-          <li>Assign the service order to the maintenance team.</li>
-          <li>Confirm and save the PMS service order.</li>
+          <li>Attach any relevant documents or maintenance history records.</li>
+          <li>Assign the task to the appropriate technician or team.</li>
+          <li>Save and confirm the PMS creation.</li>
           <li>
-            Notify the relevant stakeholders about the scheduled maintenance.
+            Notify the team or individual responsible for executing the
+            maintenance task.
           </li>
         </ul>
       </div>
@@ -270,3 +301,4 @@
     </footer>
   </body>
 </html>
+l̥ōl̥ō

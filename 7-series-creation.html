@@ -21,6 +21,7 @@
       /* Navbar Styling */
       .navbar {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         background: #1e293b; /* Dark Blue-Black */
@@ -37,11 +38,14 @@
         text-transform: uppercase;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         border-bottom: 4px solid #38bdf8;
+        padding-bottom: 5px;
       }
 
       .nav-links {
         list-style: none;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 15px;
         margin: 0;
         padding: 0;
@@ -51,13 +55,12 @@
         display: inline-block;
         padding: 10px 20px;
         font-family: "Poppins", sans-serif;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: bold;
         text-decoration: none;
         color: #e5e7eb;
         background: #2563eb; /* Blue */
         border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease, box-shadow 0.3s ease,
           background 0.3s ease;
       }
@@ -70,53 +73,61 @@
 
       /* Heading Styling */
       .heading {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
+        text-align: center;
+        padding: 20px;
         background: linear-gradient(90deg, #1e293b, #2563eb);
         color: #e5e7eb;
         font-family: "Poppins", sans-serif;
-        font-size: 3rem;
-        margin: 20px auto;
-        max-width: 95%;
+        font-size: 2.5rem;
         font-weight: bold;
+        margin: 20px auto;
         border-radius: 8px;
-        text-align: center;
+        max-width: 90%;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        letter-spacing: 1.5px;
       }
 
       /* Layout - Content Area */
       .content {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         gap: 20px;
         padding: 20px;
       }
 
-      /* Animations */
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
       /* Left Side (Two Cards) */
       .left-side {
-        flex: 1;
         display: flex;
         flex-direction: column;
+        flex: 1;
         gap: 20px;
       }
 
-      .left-side .bento-card {
-        animation: fadeIn 1s ease-in-out;
+      .bento-card {
+        background-color: #1e293b; /* Dark Blue-Black */
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .bento-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .bento-card h2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        color: #38bdf8;
+        margin-bottom: 10px;
+      }
+
+      .bento-card ul {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #e5e7eb;
       }
 
       /* Right Side (Unique Large Card) */
@@ -128,45 +139,13 @@
         border-radius: 12px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         font-family: "Merriweather", serif;
-        animation: fadeIn 1.5s ease-in-out;
-      }
-
-      /* Bento Card Styling */
-      .bento-card {
-        background-color: #1e293b; /* Dark Blue-Black */
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .bento-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-      }
-
-      .bento-card h2 {
-        font-family: "Poppins", sans-serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #38bdf8; /* Sky Blue */
-        margin-bottom: 15px;
-      }
-
-      .bento-card ul {
-        font-family: "Lora", serif;
-        font-size: 1rem;
-        color: #e5e7eb;
-        line-height: 1.8; /* Proper Line Spacing */
-        margin-bottom: 10px;
       }
 
       .right-side ul {
         font-family: "Merriweather", serif;
         font-size: 1rem;
         line-height: 1.8;
+        color: #f3f4f6;
       }
 
       /* Footer Styling */
@@ -184,9 +163,6 @@
         .content {
           flex-direction: column;
         }
-        .right-side {
-          animation: fadeIn 1.5s ease-in-out;
-        }
       }
     </style>
   </head>
@@ -198,12 +174,10 @@
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button">Home</a></li>
           <li>
-            <a href="7 series handling.html" class="nav-button"
-              >7 Series Handling</a
-            >
+            <a href="7-series.html" class="nav-button">7 Series Handling</a>
           </li>
           <li>
-            <a href="7-series creation.html" class="nav-button"
+            <a href="7-series-creation.html" class="nav-button"
               >7 Series Creation</a
             >
           </li>
@@ -250,18 +224,10 @@
           <li>Log into the service order management system.</li>
           <li>Navigate to the "Create New Service Order" section.</li>
           <li>Select the 7 series option from the dropdown menu.</li>
-          <li>
-            Fill in the required details such as customer name, issue
-            description, and priority.
-          </li>
-          <li>
-            Assign the service order to the appropriate team or individual.
-          </li>
-          <li>Confirm and save the new service order.</li>
-          <li>
-            Notify the customer about the new service order and provide the
-            reference number.
-          </li>
+          <li>Fill in the required details.</li>
+          <li>Assign the service order to the appropriate team.</li>
+          <li>Confirm and save the service order.</li>
+          <li>Notify the customer with the reference number.</li>
         </ul>
       </div>
     </main>

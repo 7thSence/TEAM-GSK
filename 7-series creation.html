@@ -31,22 +31,12 @@
 
       .logo {
         font-family: "Poppins", sans-serif;
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: bold;
-        color: #ffffff;
+        color: #38bdf8;
         text-transform: uppercase;
-        letter-spacing: 4px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(255, 255, 255, 0.4);
-        border-bottom: 4px solid #38bdf8;
-        text-align: center;
-        display: inline-block;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      }
-
-      .logo:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        letter-spacing: 2px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
       }
 
       .nav-links {
@@ -57,9 +47,13 @@
         padding: 0;
       }
 
+      .nav-links li {
+        margin: 0;
+      }
+
       .nav-button {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 10px 15px;
         font-family: "Poppins", sans-serif;
         font-size: 1rem;
         font-weight: bold;
@@ -68,12 +62,11 @@
         background: #2563eb; /* Blue */
         border-radius: 5px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease,
-          background 0.3s ease;
+        transition: transform 0.3s ease, background 0.3s ease;
       }
 
       .nav-button:hover {
-        background: #1d4ed8;
+        background: #1d4ed8; /* Darker Blue */
         transform: translateY(-3px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
       }
@@ -87,7 +80,7 @@
         background: linear-gradient(90deg, #1e293b, #2563eb);
         color: #e5e7eb;
         font-family: "Poppins", sans-serif;
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin: 20px auto;
         max-width: 95%;
         font-weight: bold;
@@ -100,32 +93,8 @@
       /* Layout - Content Area */
       .content {
         display: flex;
-        justify-content: space-between;
         gap: 20px;
         padding: 20px;
-      }
-
-      /* Animations */
-      @keyframes slideInLeft {
-        0% {
-          transform: translateX(-100%);
-          opacity: 0;
-        }
-        100% {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInRight {
-        0% {
-          transform: translateX(100%);
-          opacity: 0;
-        }
-        100% {
-          transform: translateX(0);
-          opacity: 1;
-        }
       }
 
       /* Left Side (Two Cards) */
@@ -136,22 +105,13 @@
         gap: 20px;
       }
 
-      .left-side .bento-card:first-child {
-        animation: slideInLeft 1s ease-in-out;
-      }
-
-      .left-side .bento-card:nth-child(2) {
-        animation: slideInLeft 1.2s ease-in-out;
-      }
-
       /* Right Side (One Large Card) */
       .right-side {
         flex: 1.5;
         padding: 20px;
-        background-color: #2d3748;
+        background-color: #2d3748; /* Dark Blue */
         border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        animation: slideInRight 1.5s ease-in-out;
       }
 
       /* Bento Card Styling */
@@ -160,8 +120,6 @@
         border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         padding: 20px;
-        display: flex;
-        flex-direction: column;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
@@ -183,14 +141,13 @@
         font-size: 1rem;
         color: #e5e7eb;
         line-height: 1.8; /* Proper Line Spacing */
-        margin-bottom: 10px;
       }
 
       /* Footer Styling */
       footer {
         text-align: center;
         padding: 20px;
-        background-color: #1e293b; /* Dark Blue */
+        background-color: #1e293b;
         font-family: "Poppins", sans-serif;
         font-size: 0.9rem;
         color: #e5e7eb;
@@ -201,8 +158,38 @@
         .content {
           flex-direction: column;
         }
-        .right-side {
-          animation: slideInRight 1.5s ease-in-out;
+
+        .navbar {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .heading {
+          font-size: 1.8rem;
+          padding: 20px;
+        }
+
+        .bento-card h2 {
+          font-size: 1.5rem;
+        }
+
+        .bento-card ul {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .heading {
+          font-size: 1.5rem;
         }
       }
     </style>
@@ -215,12 +202,12 @@
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button">Home</a></li>
           <li>
-            <a href="7 series handling.html" class="nav-button"
+            <a href="7-series-handling.html" class="nav-button"
               >7 Series Handling</a
             >
           </li>
           <li>
-            <a href="7-series creation.html" class="nav-button"
+            <a href="7-series-creation.html" class="nav-button"
               >7 Series Creation</a
             >
           </li>

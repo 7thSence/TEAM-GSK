@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMS Creation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #0f172a; /* Deep Navy Blue */
+        color: #e5e7eb; /* Light Gray */
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b; /* Dark Blue-Black */
+        padding: 15px 20px;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-button {
+        display: inline-block;
+        padding: 10px 15px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #e5e7eb;
+        background: #2563eb; /* Blue */
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Heading Styling */
+      .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        background: linear-gradient(90deg, #1e293b, #2563eb);
+        color: #e5e7eb;
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        margin: 20px auto;
+        max-width: 95%;
+        font-weight: bold;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1.5px;
+      }
+
+      /* Layout - Content Area */
+      .content {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      /* Left Side (Two Cards) */
+      .left-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* Right Side (One Large Card) */
+      .right-side {
+        flex: 1.5;
+        padding: 20px;
+        background-color: #2d3748; /* Dark Blue */
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Bento Card Styling */
+      .bento-card {
+        background-color: #1e293b; /* Dark Blue-Black */
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .bento-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .bento-card h2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #38bdf8; /* Sky Blue */
+        margin-bottom: 15px;
+      }
+
+      .bento-card ul {
+        font-family: "Lora", serif;
+        font-size: 1rem;
+        color: #e5e7eb;
+        line-height: 1.8; /* Proper Line Spacing */
+      }
+
+      /* Footer Styling */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        color: #e5e7eb;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+        }
+
+        .navbar {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .heading {
+          font-size: 1.8rem;
+          padding: 20px;
+        }
+
+        .bento-card h2 {
+          font-size: 1.5rem;
+        }
+
+        .bento-card ul {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .heading {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7-series-handling.html" class="nav-button"
+              >7 Series Handling</a
+            >
+          </li>
+          <li>
+            <a href="7-series-creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
+          <li>
+            <a href="pms-creation.html" class="nav-button">PMS Creation</a>
+          </li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="feedback.html" class="nav-button">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Heading Section -->
+    <div class="heading">How to Create PMS</div>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="left-side">
+        <div class="bento-card">
+          <h2>When to Create PMS</h2>
+          <ul>
+            <li>
+              When preventive maintenance is due based on equipment history.
+            </li>
+            <li>
+              For scheduled service of critical machinery to avoid downtime.
+            </li>
+            <li>When it aligns with the maintenance schedule for assets.</li>
+          </ul>
+        </div>
+        <div class="bento-card">
+          <h2>When Not to Create PMS</h2>
+          <ul>
+            <li>
+              If the equipment has no record of previous issues requiring
+              maintenance.
+            </li>
+            <li>When creating PMS would result in redundant service orders.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right-side">
+        <h2>How to Create PMS</h2>
+        <ul>
+          <li>Log into the service order management system.</li>
+          <li>Navigate to the "Preventive Maintenance" section.</li>
+          <li>Choose the equipment or asset requiring maintenance.</li>
+          <li>
+            Fill in details such as service type, date, and responsible team.
+          </li>
+          <li>Assign the service order to the maintenance team.</li>
+          <li>Confirm and save the PMS service order.</li>
+          <li>
+            Notify the relevant stakeholders about the scheduled maintenance.
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Made with ❤️ for the team by GSK</p>
+    </footer>
+  </body>
+</html>

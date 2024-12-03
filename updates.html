@@ -45,6 +45,7 @@
         gap: 15px;
         margin: 0;
         padding: 0;
+        transition: max-height 0.3s ease-in-out;
       }
 
       .nav-button {
@@ -66,6 +67,15 @@
         background: #1d4ed8;
         transform: translateY(-3px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        font-size: 1.8rem;
+        cursor: pointer;
       }
 
       /* Heading Styling */
@@ -195,6 +205,20 @@
 
       /* Responsive Design */
       @media (max-width: 768px) {
+        .nav-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
         .grid-container {
           grid-template-columns: 1fr 1fr;
         }
@@ -220,6 +244,7 @@
     <header>
       <nav class="navbar">
         <div class="logo">Team GSK</div>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button">Home</a></li>
           <li>
@@ -247,7 +272,7 @@
         <option value="product">Product Related</option>
         <option value="hhh">hhh</option>
         <option value="performance">Performance Related</option>
-        <option value="sap">SAP Related</option>
+        <option value="sap">SAP Related</option
         <option value="probing">Probing Related</option>
         <option value="dealer">Dealer Related</option>
         <option value="script">Script Related</option>
@@ -289,6 +314,12 @@
     </footer>
 
     <script>
+      // Toggle mobile menu
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+      }
+
       // Filter functionality
       const categoryFilter = document.getElementById("categoryFilter");
       const updateCards = document.querySelectorAll(".update-card");

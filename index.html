@@ -191,8 +191,8 @@
         font-family: "Poppins", sans-serif;
         font-size: 0.9rem;
         font-weight: bold;
-        color: #e5e7eb;
-        background: #38bdf8; /* Sky Blue */
+        color: #000000;
+        background: #05f1d9; /* Sky Blue */
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -258,6 +258,58 @@
         font-size: 0.9rem;
         color: #e5e7eb;
       }
+      #auth-modal {
+      display: block; /* Show the modal by default */
+      position: fixed;
+      z-index: 9999; /* Ensure it is above all other content */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Disable scrolling */
+      background-color: rgba(0, 0, 0, 0.9); /* Black with high opacity */
+    }
+
+    #auth-modal .modal-content {
+      background-color: #1e293b;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+      color: #e5e7eb;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #auth-modal input[type="password"] {
+      width: 80%;
+      padding: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #auth-modal button {
+      padding: 10px 20px;
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #e5e7eb;
+      background: #2563eb;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #auth-modal button:hover {
+      background: #1d4ed8;
+    }
+
+    #auth-error {
+      color: #f87171; /* Red-500 */
+      margin-top: 10px;
+    }
 
       /* Responsive Design */
       @media (max-width: 768px) {
@@ -704,5 +756,80 @@
         });
       });
     </script>
+    <!-- Authentication Modal Structure -->
+<div id="auth-modal" class="modal">
+  <div class="modal-content">
+    <h2>Authentication Required</h2>
+    <input type="password" id="auth-input" placeholder="Enter password" />
+    <button id="auth-submit">Submit</button>
+    <p id="auth-error" style="display: none;">Incorrect password. Please try again.</p>
+  </div>
+</div>
+
+<!-- Existing scripts -->
+<!-- JavaScript to handle authentication with 30-minute window -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Authentication logic
+    var authModal = document.getElementById('auth-modal');
+    var authInput = document.getElementById('auth-input');
+    var authSubmit = document.getElementById('auth-submit');
+    var authError = document.getElementById('auth-error');
+
+    // Function to check if user is authenticated
+    function isAuthenticated() {
+      var authTimestamp = localStorage.getItem('authTimestamp');
+      if (authTimestamp) {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(authTimestamp);
+        // Check if 30 minutes (1800000 milliseconds) have passed
+        if (elapsedTime < 1800000) {
+          return true;
+        } else {
+          // Remove expired timestamp
+          localStorage.removeItem('authTimestamp');
+        }
+      }
+      return false;
+    }
+
+    // Check authentication on page load
+    if (isAuthenticated()) {
+      // Hide the authentication modal
+      authModal.style.display = 'none';
+    } else {
+      // Show the authentication modal
+      authModal.style.display = 'block';
+    }
+
+    authSubmit.addEventListener('click', function() {
+      var password = authInput.value;
+      if (password === 'WOW') {
+        // Store the current timestamp in localStorage
+        var authTimestamp = new Date().getTime();
+        localStorage.setItem('authTimestamp', authTimestamp);
+        // Hide the authentication modal
+        authModal.style.display = 'none';
+        // Clear any error message
+        authError.style.display = 'none';
+      } else {
+        // Show error message
+        authError.style.display = 'block';
+        // Clear the input field
+        authInput.value = '';
+      }
+    });
+
+    // Optional: Allow pressing Enter to submit the password
+    authInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        authSubmit.click();
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
   </body>
 </html>

@@ -48,6 +48,10 @@
         transition: max-height 0.3s ease-in-out;
       }
 
+      .nav-links li {
+        margin: 0;
+      }
+
       .nav-button {
         display: inline-block;
         padding: 10px 20px;
@@ -74,7 +78,7 @@
         background: none;
         border: none;
         color: #e5e7eb;
-        font-size: 1.8rem;
+        font-size: 2rem;
         cursor: pointer;
       }
 
@@ -127,6 +131,8 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         padding: 20px;
+        max-width: 95%;
+        margin: 0 auto;
       }
 
       /* Update Card Styling */
@@ -213,6 +219,13 @@
           display: none;
           flex-direction: column;
           gap: 10px;
+          background-color: #1e293b;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          width: calc(100% - 40px);
+          padding: 20px;
+          border-radius: 8px;
         }
 
         .nav-links.active {
@@ -227,6 +240,15 @@
       @media (max-width: 480px) {
         .grid-container {
           grid-template-columns: 1fr;
+        }
+
+        .heading {
+          font-size: 2rem;
+          padding: 20px;
+        }
+
+        .nav-toggle {
+          font-size: 1.5rem;
         }
       }
 
@@ -244,10 +266,19 @@
     <header>
       <nav class="navbar">
         <div class="logo">Team GSK</div>
+        <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-button"> Home</a></li>
-          <li><a href="7_series_handling.html" class="nav-button"> 7 series handling</a></li>
-          <li><a href="7_series_creation.html" class="nav-button">7 Series creation</a></li>
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button"
+              >7 Series Handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
           <li>
             <a href="pms-creation.html" class="nav-button">PMS Creation</a>
           </li>
@@ -266,9 +297,9 @@
         <option value="all">All Categories</option>
         <option value="tat">TAT Related</option>
         <option value="product">Product Related</option>
-        <option value="hhh">hhh</option>
+        <option value="hhh">HHH</option>
         <option value="performance">Performance Related</option>
-        <option value="sap">SAP Related</option
+        <option value="sap">SAP Related</option>
         <option value="probing">Probing Related</option>
         <option value="dealer">Dealer Related</option>
         <option value="script">Script Related</option>
@@ -295,13 +326,14 @@
       </div>
 
       <div class="update-card">
-        <div class="category-label hhh">hhh</div>
+        <div class="category-label hhh">HHH</div>
         <h3>Update 3</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate.
         </p>
       </div>
+      <!-- Add more update cards as needed -->
     </div>
 
     <!-- Footer -->

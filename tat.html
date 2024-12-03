@@ -1,12 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAT</title>
-</head>
-<body>
-  <h1>Welcome to the TAT Page</h1>
-  <p>This page contains information about TAT handling and processes.</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Platform - Tagging - TAT</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0f172a; /* Deep Navy Blue */
+        color: #e5e7eb; /* Light Gray */
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b;
+        padding: 15px 20px;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #38bdf8;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #e5e7eb;
+        background: #2563eb; /* Blue */
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Heading Styling */
+      .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        background: linear-gradient(90deg, #1e293b, #2563eb);
+        color: #e5e7eb;
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
+        margin: 20px auto;
+        max-width: 95%;
+        font-weight: bold;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1.5px;
+      }
+
+      /* Table Styling */
+      .table-container {
+        padding: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #334155;
+        text-align: left;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #1e293b;
+        color: #38bdf8;
+        text-align: center;
+      }
+
+      .highlight-row {
+        background-color: #2563eb; /* Light Blue */
+        color: #ffffff; /* White Text */
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .highlight-row-center {
+        background-color: #1d4ed8; /* Darker Blue */
+        color: #f3f4f6; /* Light Gray */
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      td {
+        color: #e5e7eb;
+      }
+
+      /* Footer Styling */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+
+        .heading {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li><a href="7-series-handling.html" class="nav-button">7 Series Handling</a></li>
+          <li><a href="7-series-creation.html" class="nav-button">7 Series Creation</a></li>
+          <li><a href="pms-creation.html" class="nav-button">PMS Creation</a></li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="Updates.html" class="nav-button">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Heading Section -->
+    <div class="heading">Purchase Platform - Tagging - TAT</div>
+
+    <!-- Table Section -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Purchase Platform</th>
+            <th>Tagging</th>
+            <th>TAT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td colspan="3">Installation</td>
+          </tr>
+          <tr>
+            <td>Dealer Purchase</td>
+            <td>GT Installation</td>
+            <td>24 hrs</td>
+          </tr>
+          <tr>
+            <td>Reliance Platform</td>
+            <td>Standard Installation</td>
+            <td>24 hrs</td>
+          </tr>
+          <tr class="highlight-row">
+            <td colspan="3">Demo</td>
+          </tr>
+          <tr>
+            <td>Dealer Purchase</td>
+            <td>GT Demo</td>
+            <td>24 hrs</td>
+          </tr>
+          <tr>
+            <td>Reliance Platform</td>
+            <td>Demo of Product</td>
+            <td>24 hrs</td>
+          </tr>
+          <tr class="highlight-row">
+            <td colspan="3">Repair</td>
+          </tr>
+          <tr>
+            <td>Dealer Purchase</td>
+            <td>GT Repair</td>
+            <td>72 hrs</td>
+          </tr>
+          <tr>
+            <td>Reliance Platform</td>
+            <td>Repair SVC @ Customer Site</td>
+            <td>72 hrs</td>
+          </tr>
+          <tr>
+            <td>Stock Complaint</td>
+            <td>GT Distributor Repair</td>
+            <td>72 hrs</td>
+          </tr>
+          <tr class="highlight-row">
+            <td colspan="3">PMS (AC Servicing)</td>
+          </tr>
+          <tr>
+            <td>Any Platform</td>
+            <td>Dry AC, Wet AC</td>
+            <td>48 hrs</td>
+          </tr>
+          <tr>
+            <td>If Customer Wants</td>
+            <td>Jet AC (Chargeable)</td>
+            <td>48 hrs</td>
+          </tr>
+          <tr class="highlight-row">
+            <td colspan="3">Uninstallation</td>
+          </tr>
+          <tr>
+            <td>Dealer Purchase</td>
+            <td>GT Uninstallation</td>
+            <td>24 hrs</td>
+          </tr>
+          <tr>
+            <td>Reliance Platform</td>
+            <td>Old Product Uninstallation</td>
+            <td>24 hrs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Made with ❤️ for the team by GSK</p>
+    </footer>
+  </body>
 </html>

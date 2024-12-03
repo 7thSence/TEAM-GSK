@@ -30,33 +30,27 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
 
-      /* Elegant Rebel Logo Style */
-      /* Refined and Visible Elegant Rebel Logo */
-      /* Refined Rebel Logo with Verdana Font */
+      /* Logo Style */
       .logo {
-        font-family: "Verdana", sans-serif; /* Using Verdana for clear, readable font */
-        font-size: 2.5rem; /* Larger size for presence */
+        font-family: "Verdana", sans-serif;
+        font-size: 2.5rem;
         font-weight: bold;
-        color: #ffffff; /* White text for high visibility */
+        color: #ffffff;
         text-transform: uppercase;
-        letter-spacing: 4px; /* Adds elegance */
+        letter-spacing: 4px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(255, 255, 255, 0.4); /* Soft shadows for contrast */
-        padding-bottom: 5px; /* Slight padding to prevent crowding */
-        border-bottom: 4px solid #38bdf8; /* Sky Blue border for contrast */
-        background: linear-gradient(
-          45deg,
-          #1e3a8a,
-          #38bdf8
-        ); /* Gradient from dark blue to sky blue */
+          0 0 10px rgba(255, 255, 255, 0.4);
+        padding-bottom: 5px;
+        border-bottom: 4px solid #38bdf8;
+        background: linear-gradient(45deg, #1e3a8a, #38bdf8);
         text-align: center;
         display: inline-block;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       }
 
       .logo:hover {
-        transform: translateY(-5px); /* Subtle hover effect */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow for hover effect */
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       }
 
       .nav-links {
@@ -116,7 +110,6 @@
         max-width: 95%;
         font-weight: bold;
         border-radius: 8px;
-        
         text-align: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         letter-spacing: 1.5px;
@@ -139,6 +132,7 @@
         display: flex;
         flex-direction: column;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
       }
 
       .bento-card:hover {
@@ -187,6 +181,71 @@
         font-family: "Lora", serif;
         margin-top: 5px;
         color: #e2e8f0; /* Light Gray Text */
+      }
+
+      /* Script Button Styling */
+      .script-button {
+        margin-top: auto;
+        align-self: flex-end;
+        padding: 10px 15px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #e5e7eb;
+        background: #38bdf8; /* Sky Blue */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      .script-button:hover {
+        background: #0ea5e9; /* Lighter Blue */
+        transform: translateY(-2px);
+      }
+
+      .script-button:active {
+        transform: translateY(1px);
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+      }
+
+      .modal-content {
+        background-color: #1e293b; /* Dark Blue-Black */
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        color: #e5e7eb; /* Light Gray */
+        border-radius: 8px;
+        position: relative;
+      }
+
+      .close-button {
+        color: #e5e7eb;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close-button:hover,
+      .close-button:focus {
+        color: #f1f1f1;
+        text-decoration: none;
+        cursor: pointer;
       }
 
       /* Footer Styling */
@@ -256,8 +315,16 @@
         <div class="logo">Team GSK</div>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button"> Home</a></li>
-          <li><a href="7_series_handling.html" class="nav-button"> 7 series handling</a></li>
-          <li><a href="7_series_creation.html" class="nav-button">7 Series creation</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button">
+              7 series handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series creation</a
+            >
+          </li>
           <li>
             <a href="pms-creation.html" class="nav-button">PMS Creation</a>
           </li>
@@ -268,7 +335,7 @@
     </header>
 
     <!-- Heading Section -->
-    <div class="heading">How to handle exisitng 8 series Service order</div>
+    <div class="heading">How to handle existing 8 series Service order</div>
 
     <!-- Main Content -->
     <main class="process-map">
@@ -297,200 +364,344 @@
             </ul>
           </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for In Process status."
+        >
+          Script
+        </button>
       </div>
+
+      <!-- Card 2 -->
       <div class="bento-card">
-      <h2>Status: Assign WIP
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: The SO is still open</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Create interaction followup - Ask to wait for the TAT</p></li>
-            <li><strong>Post TAT:</strong><p>Create digital complaint - Give ASAP TAT</p></li>
-          </ul>
+        <h2>Status: Assign WIP</h2>
+        <div class="sub-scenario">
+          <h3>Sub-Scenario: The SO is still open</h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Create interaction followup - Ask to wait for the TAT</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>Create digital complaint - Give ASAP TAT</p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Assign WIP status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: DOA Confirmed/DOA  Approved
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario:  If Technical report (TR) status is avilable</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Interaction follow up - if it's within 2 days of TR report
-- Give email ID and TR number , ask the customer to email
-</p></li>
-            <li><strong>Post TAT:</strong><p>Create comaplaint follow up , post 2 days of TR approval
- - Give email ID and TR number , ask the customer to email
-</p></li>
-          </ul>
+
+      <!-- Card 3 -->
+      <div class="bento-card">
+        <h2>Status: DOA Confirmed/DOA Approved</h2>
+        <div class="sub-scenario">
+          <h3>Sub-Scenario: If Technical report (TR) status is available</h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>
+                  Interaction follow up - if it's within 2 days of TR report -
+                  Give email ID and TR number, ask the customer to email
+                </p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>
+                  Create complaint follow up, post 2 days of TR approval - Give
+                  email ID and TR number, ask the customer to email
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for DOA Confirmed/Approved with TR available."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: DOA Confirmed/DOA  Approved
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario:  If Technical report (TR) status is not avilable</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Complaint followup(7 series)
-- asap resolution to wait
-</p></li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
-- asap resolution to wait</p></li>
-          </ul>
+
+      <!-- Card 4 -->
+      <div class="bento-card">
+        <h2>Status: DOA Confirmed/DOA Approved</h2>
+        <div class="sub-scenario">
+          <h3>
+            Sub-Scenario: If Technical report (TR) status is not available
+          </h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Complaint followup(7 series) - ASAP resolution to wait</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>Complaint followup(7 series) - ASAP resolution to wait</p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for DOA Confirmed/Approved without TR."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Parts pending
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: Always check the change history of previous SO , if the new value status is 'parts pending'
-</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Interaction follow up
-- Ask the customer to wait 7-10 working days
-</p
-            </li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
- - Ask the customer to wait 7-10 working days
-</p></li>
-          </ul>
+
+      <!-- Card 5 -->
+      <div class="bento-card">
+        <h2>Status: Parts pending</h2>
+        <div class="sub-scenario">
+          <h3>
+            Sub-Scenario: Always check the change history of previous SO, if the
+            new value status is 'parts pending'
+          </h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>
+                  Interaction follow up - Ask the customer to wait 7-10 working
+                  days
+                </p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>
+                  Complaint followup(7 series) - Ask the customer to wait 7-10
+                  working days
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Parts pending status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Customer deferment
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: Check the customer appointment date in dates coloumn - TAT will me appointment date
-</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Interaction follow up
- - Just wait for the appointment date
-</p></li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
-- We give customer as soon as possble appointment date
-</p></li>
-          </ul>
+
+      <!-- Card 6 -->
+      <div class="bento-card">
+        <h2>Status: Customer deferment</h2>
+        <div class="sub-scenario">
+          <h3>
+            Sub-Scenario: Check the customer appointment date in dates column -
+            TAT will be appointment date
+          </h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>
+                  Interaction follow up - Just wait for the appointment date
+                </p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>
+                  Complaint followup(7 series) - We give customer as soon as
+                  possible appointment date
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Customer deferment status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Send To Vender
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: New value in change history is Send To Vender</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Just wait for the TAT
- - Interaction follow up
-</p></li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
- - We give customer as soon as possble TAT
-</p></li>
-          </ul>
+
+      <!-- Card 7 -->
+      <div class="bento-card">
+        <h2>Status: Send To Vendor</h2>
+        <div class="sub-scenario">
+          <h3>Sub-Scenario: New value in change history is Send To Vendor</h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Just wait for the TAT - Interaction follow up</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>
+                  Complaint followup(7 series) - We give customer as soon as
+                  possible TAT
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Send To Vendor status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Request for cancellation
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: If SO is within 30 days
-</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Interaction follow up
- - Inform the customer to wait
-</p></li>
-            <li><strong>Post TAT:</strong><p>Interaction follow up
- - Inform the customer to wait</p></li>
-          </ul>
+
+      <!-- Card 8 -->
+      <div class="bento-card">
+        <h2>Status: Request for cancellation</h2>
+        <div class="sub-scenario">
+          <h3>Sub-Scenario: If SO is within 30 days</h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Interaction follow up - Inform the customer to wait</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>Interaction follow up - Inform the customer to wait</p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Request for cancellation status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Completed 
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: If customer comes for a different issue which is Totally different to previous SO
-</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Create new SO - Share TAT as per SO
-</p></li>
-            <li><strong>Post TAT:</strong><p>Create new SO - Share TAT as per SO</p></li>
-          </ul>
+
+      <!-- Card 9 -->
+      <div class="bento-card">
+        <h2>Status: Completed</h2>
+        <div class="sub-scenario">
+          <h3>
+            Sub-Scenario: If customer comes for a different issue which is
+            totally different from previous SO
+          </h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Create new SO - Share TAT as per SO</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>Create new SO - Share TAT as per SO</p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Completed status with new issue."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Technical support required
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: If new value is Technical support required</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Just wait for the TAT
- - Interaction follow up</p></li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
- - We give customer as soon as possble TAT</p></li>
-          </ul>
+
+      <!-- Card 10 -->
+      <div class="bento-card">
+        <h2>Status: Technical support required</h2>
+        <div class="sub-scenario">
+          <h3>Sub-Scenario: If new value is Technical support required</h3>
+          <div class="action">
+            <h4>Action</h4>
+            <ul>
+              <li>
+                <strong>Within TAT:</strong>
+                <p>Just wait for the TAT - Interaction follow up</p>
+              </li>
+              <li>
+                <strong>Post TAT:</strong>
+                <p>
+                  Complaint followup(7 series) - We give customer as soon as
+                  possible TAT
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <button
+          class="script-button"
+          data-script-content="Content for Technical support required status."
+        >
+          Script
+        </button>
       </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Completed 
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: If customer comes for a different issue which is Totally different to previous SO
-</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Create new SO - Share TAT as per SO
-</p></li>
-            <li><strong>Post TAT:</strong><p>Create new SO - Share TAT as per SO</p></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="bento-card">
-      <h2>Status: Technical support required
-</h2>
-      <div class="sub-scenario">
-        <h3>Sub-Scenario: If new value is Technical support required</h3>
-        <div class="action">
-          <h4>Action</h4>
-          <ul>
-            <li><strong>Within TAT:</strong><p>Just wait for the TAT
- - Interaction follow up</p></li>
-            <li><strong>Post TAT:</strong><p>Complaint followup(7 series)
- - We give customer as soon as possble TAT</p></li>
-          </ul>
-        </div>
-      </div>
-    </div>
     </main>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <p id="modal-text">Your dummy paragraph content goes here.</p>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer>
       <p>Made with ❤️ for the team by GSK</p>
     </footer>
+
+    <!-- JavaScript to handle modal functionality -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the modal
+        var modal = document.getElementById("modal");
+
+        // Get the modal text element
+        var modalText = document.getElementById("modal-text");
+
+        // Get the close button
+        var closeButton = document.querySelector(".close-button");
+
+        // Get all script buttons
+        var scriptButtons = document.querySelectorAll(".script-button");
+
+        // When the user clicks on any script button, open the modal with specific content
+        scriptButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            // Get content from data attribute
+            var content = this.getAttribute("data-script-content");
+            // Set the content inside the modal
+            modalText.textContent = content;
+            // Display the modal
+            modal.style.display = "block";
+          });
+        });
+
+        // When the user clicks on close button, close the modal
+        closeButton.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        // When the user clicks anywhere outside of the modal content, close it
+        window.addEventListener("click", function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
   </body>
 </html>

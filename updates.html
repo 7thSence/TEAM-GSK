@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Updates</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #0f172a; /* Deep Navy Blue */
+        color: #e5e7eb; /* Light Gray */
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b; /* Dark Blue-Black */
+        padding: 15px 20px;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        border-bottom: 4px solid #38bdf8;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #e5e7eb;
+        background: #2563eb; /* Blue */
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Heading Styling */
+      .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        background: linear-gradient(90deg, #1e293b, #2563eb);
+        color: #e5e7eb;
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
+        margin: 20px auto;
+        max-width: 95%;
+        font-weight: bold;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1.5px;
+      }
+
+      /* Filter Section */
+      .filter-section {
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px auto;
+        max-width: 95%;
+      }
+
+      .filter-section select {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #38bdf8;
+        background-color: #1e293b;
+        color: #e5e7eb;
+        transition: border 0.3s ease;
+      }
+
+      .filter-section select:focus {
+        outline: none;
+        border-color: #2563eb;
+      }
+
+      /* Grid Layout */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      /* Update Card Styling */
+      .update-card {
+        background-color: #1e293b;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .update-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .update-card h3 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #38bdf8;
+        margin-bottom: 10px;
+      }
+
+      .update-card p {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        color: #e5e7eb;
+        line-height: 1.6;
+      }
+
+      .category-label {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 5px;
+        color: #fff;
+        text-transform: uppercase;
+      }
+
+      .tat {
+        background-color: #f97316; /* Orange */
+      }
+
+      .product {
+        background-color: #10b981; /* Green */
+      }
+
+      .hhh {
+        background-color: #2563eb; /* Blue */
+      }
+
+      .performance {
+        background-color: #eab308; /* Yellow */
+      }
+
+      .sap {
+        background-color: #6b7280; /* Gray */
+      }
+
+      .probing {
+        background-color: #8b5cf6; /* Purple */
+      }
+
+      .dealer {
+        background-color: #f43f5e; /* Red */
+      }
+
+      .script {
+        background-color: #4ade80; /* Lime */
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .grid-container {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .grid-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b;
+        color: #e5e7eb;
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7-series-creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
+          <li>
+            <a href="pms-creation.html" class="nav-button">PMS Creation</a>
+          </li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="updates.html" class="nav-button">Updates</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Heading -->
+    <div class="heading">Daily Process Updates</div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="tat">TAT Related</option>
+        <option value="product">Product Related</option>
+        <option value="hhh">hhh</option>
+        <option value="performance">Performance Related</option>
+        <option value="sap">SAP Related</option>
+        <option value="probing">Probing Related</option>
+        <option value="dealer">Dealer Related</option>
+        <option value="script">Script Related</option>
+      </select>
+    </div>
+
+    <!-- Grid of Updates -->
+    <div class="grid-container">
+      <div class="update-card">
+        <div class="category-label tat">TAT Related</div>
+        <h3>Update 1</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate.
+        </p>
+      </div>
+      <div class="update-card">
+        <div class="category-label product">Product Related</div>
+        <h3>Update 2</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate.
+        </p>
+      </div>
+
+      <div class="update-card">
+        <div class="category-label hhh">hhh</div>
+        <h3>Update 3</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Made with ❤️ for the team by GSK</p>
+    </footer>
+
+    <script>
+      // Filter functionality
+      const categoryFilter = document.getElementById("categoryFilter");
+      const updateCards = document.querySelectorAll(".update-card");
+
+      categoryFilter.addEventListener("change", () => {
+        const selectedCategory = categoryFilter.value;
+
+        updateCards.forEach((card) => {
+          const category = card.querySelector(".category-label").classList[1];
+
+          if (selectedCategory === "all" || category === selectedCategory) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

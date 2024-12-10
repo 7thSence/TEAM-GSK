@@ -147,6 +147,13 @@
         line-height: 1.8;
         color: #f3f4f6;
       }
+      .step-title {
+        color: #0c0c0c; /* a deep, readable blue */
+        font-weight: bold;
+      }
+      .step-action {
+        color: #d2c6c6; /* dark green for contrast */
+      }
 
       /* Footer Styling */
       footer {
@@ -173,8 +180,16 @@
         <div class="logo">Team GSK</div>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button"> Home</a></li>
-          <li><a href="7_series_handling.html" class="nav-button"> 7 series handling</a></li>
-          <li><a href="7_series_creation.html" class="nav-button">7 Series creation</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button">
+              7 series handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series creation</a
+            >
+          </li>
           <li>
             <a href="pms-creation.html" class="nav-button">PMS Creation</a>
           </li>
@@ -192,36 +207,88 @@
       <div class="left-side">
         <div class="bento-card">
           <h2>When to Create 7 Series</h2>
-          <ul>
-            <li>When the current service order cannot resolve the issue.</li>
+          <ul style="font-family: Verdana, Geneva, Tahoma, sans-serif">
             <li>
-              If the customer has a new issue that needs to be tracked
-              separately.
+              When the current service order goes out of TAT (as per hours)
             </li>
-            <li>When a new service order is necessary for proper tracking.</li>
+            <li>When PMS request goes out of Appointment date</li>
+            <li>When SO is open and TR report gets crossed 2 days</li>
           </ul>
         </div>
         <div class="bento-card">
           <h2>When Not to Create 7 Series</h2>
-          <ul>
+          <ul style="font-family: Verdana, Geneva, Tahoma, sans-serif">
+            <li>If the SO is still with in the TAT</li>
             <li>
-              If the issue is already covered under an existing service order.
+              If SO status as new value in chage history is
+              <p style="color: rgb(227, 17, 17)">"Request for cancellation"</p>
             </li>
-            <li>If creating a new 7 series causes redundancy in the system.</li>
+            <li>When a 7 series already exist in the transaction history</li>
           </ul>
         </div>
       </div>
 
-      <div class="right-side">
-        <h2>How to Create 7 Series</h2>
+      <div
+        class="right-side"
+        style="font-family: Verdana, Geneva, Tahoma, sans-serif"
+      >
+        <h1>
+          Steps to Generate a Digital Complaint on an Existing Service Order
+          (SAP CRM)
+        </h1>
         <ul>
-          <li>Log into the service order management system.</li>
-          <li>Navigate to the "Create New Service Order" section.</li>
-          <li>Select the 7 series option from the dropdown menu.</li>
-          <li>Fill in the required details.</li>
-          <li>Assign the service order to the appropriate team.</li>
-          <li>Confirm and save the service order.</li>
-          <li>Notify the customer with the reference number.</li>
+          <li>
+            <span class="step-title">Category:</span>
+            <span class="step-action"
+              >Click on "Category" and then select <em>Resq CC</em></span
+            >
+          </li>
+          <li>
+            <span class="step-title">Reference Date:</span>
+            <span class="step-action"
+              >Enter the same as <em>Request End Date</em>
+            </span>
+          </li>
+          <li>
+            <span class="step-title">Reference Number:</span>
+            <span class="step-action"
+              >Input the <em>8 series SO number</em> associated with the
+              existing service order</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Department:</span>
+            <span class="step-action"
+              >Select <em>Resq</em> from the department list</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Category (Type of Issue):</span>
+            <span class="step-action"
+              >Choose <em>Repair or Installation</em> based on the nature of the
+              complaint</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Sub Category:</span>
+            <span class="step-action"
+              >Select <em>Delay Engineer Visit</em>
+            </span>
+          </li>
+          <li>
+            <span class="step-title">Date (ETR for Digital Complaint):</span>
+            <span class="step-action"
+              >Calculate and enter the ETR date by adding 2 days from
+              today</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Notes (Problem Description):</span>
+            <span class="step-action"
+              >Add the <em>CX VOC</em> (Customer Experience Voice of Customer)
+              details to provide more context</span
+            >
+          </li>
         </ul>
       </div>
     </main>

@@ -393,37 +393,33 @@
     <!-- Main Content -->
     <main class="process-map">
       <!-- Repeat All 10 Cards -->
-      <div class="bento-card">
-        <h2>Status: In Process</h2>
+       <div class="bento-card">
+        <h2>Status: Request for cancellation</h2>
         <div class="sub-scenario">
-          <h3>Sub-Scenario: The SO is still open</h3>
+          <h3>Sub-Scenario: If SO is within 30 days</h3>
           <div class="action">
             <h4>Action</h4>
             <ul>
               <li>
                 <strong>Within TAT:</strong>
-                <p>
-                  Change to Release to WFM/send to vendor and adjust ETR date +
-                  2 days.
-                </p>
+                <p>Interaction follow up - Inform the customer to wait</p>
               </li>
               <li>
                 <strong>Post TAT:</strong>
-                <p>
-                  Change to Release to WFM/send to vendor and adjust ETR date +
-                  2 days.
-                </p>
+                <p>Interaction follow up - Inform the customer to wait</p>
               </li>
             </ul>
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content="Content for In Process status."
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>English Script (Point-wise):</h3><p>I understand that you've been waiting for the repair or installation to be completed. Please allow the team some more time to work on your request. 🔴🔴🔴</p><p>The service order is still active, and the technician will ensure that your repair or installation is completed as soon as possible. 🔴🔴🔴</p><p>Thank you for your patience and understanding. 🔴🔴🔴</p><p>I understand your frustration, and I sincerely apologize for the delay. 🔴🔴🔴</p><p>We value your time and are doing everything we can to expedite the resolution. 🔴🔴🔴</p><p>I assure you that we are prioritizing your request and will have it resolved at the earliest possible TAT. 🔴🔴🔴</p><h3>Hindi Script (Point-wise):</h3><p>मैं समझता हूँ कि आप काफी समय से repair या installation का इंतज़ार कर रहे हैं। थोड़ा और समय दें, टीम आपकी request पर काम कर रही है। 🔴🔴🔴</p><p>आपका SO अभी भी active है, और technician इसे जल्द से जल्द पूरा करेगा। 🔴🔴🔴</p><p>आपके patience और cooperation के लिए धन्यवाद। 🔴🔴🔴</p><p>मुझे पता है कि delay से आपको परेशानी हो रही है, इसके लिए मैं माफ़ी चाहता हूँ। 🔴🔴🔴</p><p>हम आपकी request को जल्दी से जल्दी complete करने की कोशिश कर रहे हैं। 🔴🔴🔴</p><p>मैं कोशिश करता हूँ कि आपकी problem को हम earliest possible TAT में resolve कर देंगे। 🔴🔴🔴</p>"
+>
+  Script
+</button>
+
       </div>
+      
 
       <!-- Card 2 -->
       <div class="bento-card">
@@ -616,31 +612,38 @@
       </div>
 
       <!-- Card 8 -->
-      <div class="bento-card">
-        <h2>Status: Request for cancellation</h2>
+       <div class="bento-card">
+        <h2>Status: In Process</h2>
         <div class="sub-scenario">
-          <h3>Sub-Scenario: If SO is within 30 days</h3>
+          <h3>Sub-Scenario: The SO is still open</h3>
           <div class="action">
             <h4>Action</h4>
             <ul>
               <li>
                 <strong>Within TAT:</strong>
-                <p>Interaction follow up - Inform the customer to wait</p>
+                <p>
+                  Change to Release to WFM/send to vendor and adjust ETR date +
+                  2 days.
+                </p>
               </li>
               <li>
                 <strong>Post TAT:</strong>
-                <p>Interaction follow up - Inform the customer to wait</p>
+                <p>
+                  Change to Release to WFM/send to vendor and adjust ETR date +
+                  2 days.
+                </p>
               </li>
             </ul>
           </div>
         </div>
         <button
           class="script-button"
-          data-script-content="Content for Request for cancellation status."
+          data-script-content="Content for In Process status."
         >
           Script
         </button>
       </div>
+      
 
       <!-- Card 9 -->
       <div class="bento-card">
@@ -718,43 +721,44 @@
 
     <!-- JavaScript to handle modal functionality -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Get the modal
-        var modal = document.getElementById("modal");
+        document.addEventListener("DOMContentLoaded", function () {
+  // Get the modal
+  var modal = document.getElementById("modal");
 
-        // Get the modal text element
-        var modalText = document.getElementById("modal-text");
+  // Get the modal text element
+  var modalText = document.getElementById("modal-text");
 
-        // Get the close button
-        var closeButton = document.querySelector(".close-button");
+  // Get the close button
+  var closeButton = document.querySelector(".close-button");
 
-        // Get all script buttons
-        var scriptButtons = document.querySelectorAll(".script-button");
+  // Get all script buttons
+  var scriptButtons = document.querySelectorAll(".script-button");
 
-        // When the user clicks on any script button, open the modal with specific content
-        scriptButtons.forEach(function (button) {
-          button.addEventListener("click", function () {
-            // Get content from data attribute
-            var content = this.getAttribute("data-script-content");
-            // Set the content inside the modal
-            modalText.textContent = content;
-            // Display the modal
-            modal.style.display = "block";
-          });
-        });
+  // When the user clicks on any script button, open the modal with specific content
+  scriptButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Get content from data attribute
+      var content = this.getAttribute("data-script-content");
+      // Set the content inside the modal using innerHTML to render HTML tags
+      modalText.innerHTML = content;
+      // Display the modal
+      modal.style.display = "block";
+    });
+  });
 
-        // When the user clicks on close button, close the modal
-        closeButton.addEventListener("click", function () {
-          modal.style.display = "none";
-        });
+  // When the user clicks on close button, close the modal
+  closeButton.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
 
-        // When the user clicks anywhere outside of the modal content, close it
-        window.addEventListener("click", function (event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        });
-      });
+  // When the user clicks anywhere outside of the modal content, close it
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
+
     </script>
     <!-- Authentication Modal Structure -->
 <div id="auth-modal" class="modal">

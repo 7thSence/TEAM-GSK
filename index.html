@@ -11,7 +11,7 @@
     <style>
       /* Global Font Styles */
       body {
-        font-family: "Lora", serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         background-color: #0f172a; /* Deep Navy Blue */
         color: #e5e7eb; /* Light Gray for contrast */
         line-height: 1.6;
@@ -478,7 +478,7 @@
         </div>
         <button
           class="script-button"
-          data-script-content="Content for DOA Confirmed/Approved with TR available."
+          data-script-content="V4 2N code || Yet to add script"
         >
           Script
         </button>
@@ -507,7 +507,7 @@
         </div>
         <button
           class="script-button"
-          data-script-content="Content for DOA Confirmed/Approved without TR."
+          data-script-content="V4 2N code || Yet to add script"
         >
           Script
         </button>
@@ -515,11 +515,11 @@
 
       <!-- Card 5 -->
       <div class="bento-card">
-        <h2>Status: Parts pending</h2>
+        <h2>Status: Parts pending/Any parts related in new value</h2>
         <div class="sub-scenario">
           <h3>
             Sub-Scenario: Always check the change history of previous SO, if the
-            new value status is 'parts pending'
+            new value status is 'parts related'
           </h3>
           <div class="action">
             <h4>Action</h4>
@@ -542,11 +542,12 @@
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content="Content for Parts pending status."
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>Within TAT:</h3><p>🔴 As I can see, the technician has updated that there is a part-related issue with the product. Don’t worry, please wait a little more time, as it usually takes 7-10 working days for the repair to get completed in such cases.</p><p>🔴 Technician ने अपडेट किया है कि product में part-related issue है। चिंता मत कीजिए, ऐसे मामलों में repair पूरा होने में आमतौर पर 7-10 working days लगते हैं। कृपया थोड़ा और इंतजार करें।</p><h3>Out of TAT:</h3><p>🔴 As I can see, the technician has updated that there is a part-related issue with the product. Don’t worry, please wait a little more time, as it usually takes 7-10 working days for the repair to get completed in such cases.</p><p>🔴 Technician ने अपडेट किया है कि product में part-related issue है। चिंता मत कीजिए, ऐसे मामलों में repair पूरा होने में आमतौर पर 7-10 working days लगते हैं। कृपया थोड़ा और इंतजार करें।</p>"
+>
+  Script
+</button>
+
       </div>
 
       <!-- Card 6 -->
@@ -577,11 +578,12 @@
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content="Content for Customer deferment status."
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>Within Appointment Date:</h3><p>🔴 I can see that you have raised a complaint for repair/installation. Please don’t worry; kindly wait until the Appointment date is completed. The technician will resolve your issue soon.</p><p>🔴 मैं देख रहा हूँ कि आपने repair/installation की शिकायत दर्ज की है। टेंशन मत लीजिए, Appointment date पूरा होने तक थोड़ा इंतजार करें। Technician जल्दी ही आपकी problem सॉल्व कर देगा।</p><h3>Out of Appointment Date:</h3><p>🔴 I sincerely apologize for the inconvenience caused. I’m immediately notifying the service center by escalating the issue. The team will prioritize your request and resolve it as soon as possible.</p><p>🔴 आपको हुई दिक्कत के लिए मैं माफ़ी चाहता हूँ। मैं अभी service center को बता रहा हूँ और इस issue को escalate कर रहा हूँ। Team इसे priority पर लेकर जल्दी से जल्दी solve करेगी।</p>"
+>
+  Script
+</button>
+
       </div>
 
       <!-- Card 7 -->
@@ -608,7 +610,7 @@
         </div>
         <button
           class="script-button"
-          data-script-content="Content for Send To Vendor status."
+          data-script-content="V4 2N code || Yet to add script"
         >
           Script
         </button>
@@ -623,28 +625,33 @@
             <h4>Action</h4>
             <ul>
               <li>
-                <strong>Within TAT:</strong>
+                <strong>Within TAT&Post TAT:</strong>
                 <p>
                   Change to Release to WFM/send to vendor and adjust ETR date +
                   2 days.
                 </p>
               </li>
               <li>
-                <strong>Post TAT:</strong>
+                <strong>Post TAT(with 7 series):</strong>
                 <p>
-                  Change to Release to WFM/send to vendor and adjust ETR date +
-                  2 days.
+                  create interaction on 7 series, inform ASAP TAT.
                 </p>
               </li>
             </ul>
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content="Content for In Process status."
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>Within TAT & Out of TAT:</h3>
+<p>🔴 As I can see, you've raised a repair/installation request. The team is still working on it. I will update and notify the team about the delay in my system. Please wait for 2 more days for the issue to be resolved by the technician.</p>
+<p>🔴 मैंने देखा है कि आपने repair/installation की रिक्वेस्ट दर्ज की है। Team अभी इस पर काम कर रही है। मैं इस delay को अपने सिस्टम में अपडेट कर रहा हूँ और टीम को notify करूँगा। कृपया 2 और दिन इंतजार करें, Technician आपकी समस्या को सॉल्व कर देगा।</p>
+<h3>Out of TAT(7 series already raised):</h3>
+<p>🔴 As I can see, you've raised a repair/installation request. The team is still working on it. I will update and notify the team about the delay in my system. Please wait; the issue will be resolved as soon as possible.</p>
+<p>🔴 मैंने देखा है कि आपने repair/installation की रिक्वेस्ट दर्ज की है। Team अभी इस पर काम कर रही है। मैं इस delay को अपने सिस्टम में अपडेट कर रहा हूँ और टीम को notify करूँगा। कृपया थोड़ा इंतजार करें, आपकी समस्या जल्द से जल्द सॉल्व हो जाएगी।</p>"
+>
+  Script
+</button>
+
       </div>
       
 
@@ -671,11 +678,12 @@
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content="hiihiuhidhskjsdjfbdjfbjdsbffdbfdnbffndbfddnbf "
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>Within TAT and Out of TAT:</h3><p>🔴 As I can see, the technician has already marked your issue as resolved. Since you're still facing this issue, I will raise a new service order, and the technician will visit again to resolve your issue.</p><p>🔴 Technician ने आपकी issue को resolve कर दिया है, लेकिन अगर अभी भी problem है, तो मैं एक नया service order दर्ज कर रहा हूँ। Technician फिर से विजिट करेगा और आपकी problem को solve करेगा।</p>"
+>
+  Script
+</button>
+
       </div>
 
       <!-- Card 10 -->
@@ -701,11 +709,12 @@
           </div>
         </div>
         <button
-          class="script-button"
-          data-script-content=" kshsjgsjghhdvshd  test"
-        >
-          Script
-        </button>
+  class="script-button"
+  data-script-content="<h3>Within TAT:</h3><p>🔴 I can see that you have raised a complaint for repair/installation. Please don’t worry; kindly wait until the TAT is completed. The technician will resolve your issue soon.</p><p>🔴 मैं देख रहा हूँ कि आपने repair/installation की शिकायत दर्ज की है। टेंशन मत लीजिए, TAT पूरा होने तक थोड़ा इंतजार करें। Technician जल्दी ही आपकी problem सॉल्व कर देगा।</p><h3>Out of TAT:</h3><p>🔴 I sincerely apologize for the inconvenience caused. I’m immediately notifying the service center by escalating the issue. The team will prioritize your request and resolve it as soon as possible.</p><p>🔴 आपको हुई दिक्कत के लिए मैं माफ़ी चाहता हूँ। मैं अभी service center को बता रहा हूँ और इस issue को escalate कर रहा हूँ। Team इसे priority पर लेकर जल्दी से जल्दी solve करेगी।</p>"
+>
+  Script
+</button>
+
       </div>
     </main>
 

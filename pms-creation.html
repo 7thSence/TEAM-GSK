@@ -161,6 +161,14 @@
         line-height: 1.8;
       }
 
+      .step-title {
+        color: #d94b14;
+        font-weight: bold;
+      }
+      .step-action {
+        color: #bbde1e;
+      }
+
       /* Animations */
       @keyframes fadeIn {
         from {
@@ -225,8 +233,16 @@
         <div class="logo">Team GSK</div>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button"> Home</a></li>
-          <li><a href="7_series_handling.html" class="nav-button"> 7 series handling</a></li>
-          <li><a href="7_series_creation.html" class="nav-button">7 Series creation</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button">
+              7 series handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series creation</a
+            >
+          </li>
           <li>
             <a href="pms-creation.html" class="nav-button">PMS Creation</a>
           </li>
@@ -244,44 +260,91 @@
       <div class="left-side">
         <div class="bento-card">
           <h2>When to Create PMS</h2>
-          <ul>
+          <ul style="font-family: Verdana, Geneva, Tahoma, sans-serif">
             <li>
-              When preventive maintenance is due based on equipment history.
+              When customer asks for a general service of their AC/Water
+              purifier.
             </li>
-            <li>
-              For scheduled service of critical machinery to avoid downtime.
-            </li>
-            <li>When it aligns with the maintenance schedule for assets.</li>
+            <li>There's no other repair problem in AC</li>
+            <li>When customer agrees for Jet chagers, create the same</li>
           </ul>
         </div>
         <div class="bento-card">
           <h2>When Not to Create PMS</h2>
-          <ul>
+          <ul style="font-family: Verdana, Geneva, Tahoma, sans-serif">
             <li>
-              If the equipment has no record of previous issues requiring
-              maintenance.
+              When customer also have repair problem (sound, not cooling etc)
             </li>
-            <li>When creating PMS would result in redundant service orders.</li>
+            <li>When auto PMS is already generated</li>
           </ul>
         </div>
       </div>
 
       <div class="right-side">
-        <h2>How to Create PMS</h2>
+        <h1>PMS FOFO Digital Service Order Process (SAP CRM)</h1>
         <ul>
-          <li>Log into the service order management system.</li>
-          <li>Navigate to the " Preventive Maintenance" section.</li>
-          <li>Select the equipment or asset requiring PMS from the list.</li>
           <li>
-            Input the necessary details such as the maintenance type, date, and
-            priority level.
+            <span class="step-title">Sold to party:</span>
+            <span class="step-action"
+              >Click on "Sold to party" field and then enter the
+              <em>Account 2 series ID</em></span
+            >
           </li>
-          <li>Attach any relevant documents or maintenance history records.</li>
-          <li>Assign the task to the appropriate technician or team.</li>
-          <li>Save and confirm the PMS creation.</li>
           <li>
-            Notify the team or individual responsible for executing the
-            maintenance task.
+            <span class="step-title">Contact:</span>
+            <span class="step-action"
+              >Click on "Contact" field and also input the
+              <em>Account 2 series ID</em></span
+            >
+          </li>
+          <li>
+            <span class="step-title">Category:</span>
+            <span class="step-action"
+              >Select <em>Jet/wet and dry</em> from the dropdown list</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Reference objects:</span>
+            <span class="step-action"
+              >Again choose <em>Jet/wet and dry</em> as your reference
+              objects</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Reference objects (SO details):</span>
+            <span class="step-action"
+              >Enter the relevant <em>Object ID</em></span
+            >
+          </li>
+          <li>
+            <span class="step-title">Items - Product ID:</span>
+            <span class="step-action"
+              >Input a product from the <em>6 series</em>, then specify
+              <em>quantity</em>, set <em>unit</em> to 1, and press Enter</span
+            >
+          </li>
+          <li>
+            <span class="step-title"
+              >Deferment date & Appointment end date:</span
+            >
+            <span class="step-action"
+              >Set both to be identical, aligned with the customer’s requested
+              date</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Notes as per VOC:</span>
+            <span class="step-action"
+              >Add any notes provided by the Voice of Customer (VOC) for
+              additional clarity</span
+            >
+          </li>
+          <li>
+            <span class="step-title">Save:</span>
+            <span class="step-action"
+              >Finally, click on <em>Save</em> to confirm and generate the PMS
+              request</span
+            >
           </li>
         </ul>
       </div>
@@ -293,4 +356,3 @@
     </footer>
   </body>
 </html>
-

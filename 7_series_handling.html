@@ -1,325 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7 Series Handling</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Merriweather:wght@700&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    /* Global Styles */
-    body {
-      font-family: "Roboto", sans-serif;
-      background-color: #0f172a; /* Deep Navy Blue */
-      color: #e5e7eb; /* Light Gray */
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Navbar Styling */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1e293b; /* Dark Blue-Black */
-      padding: 15px 20px;
-      color: #e5e7eb;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      position: relative;
-    }
-
-    .logo {
-      font-family: "Poppins", sans-serif;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ffffff;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      border-bottom: 4px solid #38bdf8;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links li {
-      margin: 0;
-    }
-
-    .nav-button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-family: "Poppins", sans-serif;
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: #e5e7eb;
-      background: #2563eb; /* Blue */
-      border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease,
-        background 0.3s ease;
-    }
-
-    .nav-button:hover {
-      background: #1d4ed8;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #e5e7eb;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    /* Heading Styling */
-    .heading {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(90deg, #1e293b, #2563eb);
-      color: #e5e7eb;
-      font-family: "Poppins", sans-serif;
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin: 20px auto;
-      border-radius: 8px;
-      max-width: 90%;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Content Layout */
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 20px;
-      max-width: 95%;
-      margin: 0 auto;
-    }
-
-    /* Bento Card Layout */
-    .bento-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .bento-card {
-      background-color: #1e293b; /* Dark Blue-Black */
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      padding: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .bento-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .bento-card h2 {
-      font-family: "Poppins", sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #38bdf8; /* Sky Blue */
-      margin-bottom: 10px;
-    }
-
-    .bento-card h3 {
-      font-family: "Poppins", sans-serif;
-      font-size: 1.2rem;
-      color: #93c5fd; /* Light Blue */
-      margin-bottom: 8px;
-    }
-
-    .bento-card p {
-      font-family: "Roboto", sans-serif;
-      font-size: 1rem;
-      color: #e5e7eb;
-      line-height: 1.8;
-    }
-
-    /* Unique Scenario Content */
-    .scenario-box {
-      background: linear-gradient(135deg, #2563eb, #1e293b);
-      color: #f3f4f6;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      padding: 20px;
-      font-family: "Merriweather", serif;
-      text-align: center;
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .scenario-box h2 {
-      font-family: "Poppins", sans-serif;
-      font-size: 1.8rem;
-      color: #38bdf8;
-      margin-bottom: 10px;
-    }
-
-    /* Footer Styling */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1e293b; /* Dark Blue */
-      font-family: "Poppins", sans-serif;
-      font-size: 0.9rem;
-      color: #e5e7eb;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-      .bento-cards {
-        grid-template-columns: repeat(2, 1fr);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 Series Handling</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #0f172a; /* Deep Navy Blue */
+        color: #e5e7eb; /* Light Gray */
+        margin: 0;
+        padding: 0;
       }
-    }
 
-    @media (max-width: 768px) {
+      /* Navbar Styling */
       .navbar {
-        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b; /* Dark Blue-Black */
+        padding: 15px 20px;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        position: relative;
       }
 
-      .nav-toggle {
-        display: block;
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        border-bottom: 4px solid #38bdf8;
       }
 
       .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #1e293b;
-        padding: 10px 0;
-      }
-
-      .nav-links.active {
+        list-style: none;
         display: flex;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
       }
 
       .nav-links li {
-        text-align: center;
-        margin: 10px 0;
+        margin: 0;
       }
 
-      .bento-cards {
-        grid-template-columns: 1fr;
+      .nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #e5e7eb;
+        background: #2563eb; /* Blue */
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
       }
 
-      .heading {
-        font-size: 2rem;
-        padding: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        font-size: 1.5rem;
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
       }
 
       .nav-toggle {
-        font-size: 1.5rem;
+        display: none;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        font-size: 2rem;
+        cursor: pointer;
       }
 
+      /* Heading Styling */
       .heading {
-        font-size: 1.5rem;
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(90deg, #1e293b, #2563eb);
+        color: #e5e7eb;
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 20px auto;
+        border-radius: 8px;
+        max-width: 90%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Content Layout */
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        max-width: 95%;
+        margin: 0 auto;
+      }
+
+      /* Bento Card Layout */
+      .bento-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .bento-card {
+        background-color: #1e293b; /* Dark Blue-Black */
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .bento-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
       }
 
       .bento-card h2 {
-        font-size: 1.3rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #38bdf8; /* Sky Blue */
+        margin-bottom: 10px;
       }
 
       .bento-card h3 {
-        font-size: 1.1rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        color: #93c5fd; /* Light Blue */
+        margin-bottom: 8px;
       }
 
       .bento-card p {
-        font-size: 0.9rem;
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        color: #e5e7eb;
+        line-height: 1.8;
+      }
+
+      /* Unique Scenario Content */
+      .scenario-box {
+        background: linear-gradient(135deg, #2563eb, #1e293b);
+        color: #f3f4f6;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        font-family: "Merriweather", serif;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1.8;
       }
 
       .scenario-box h2 {
-        font-size: 1.5rem;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.8rem;
+        color: #38bdf8;
+        margin-bottom: 10px;
       }
 
-      .scenario-box {
-        font-size: 1rem;
+      /* Footer Styling */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b; /* Dark Blue */
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        color: #e5e7eb;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Team GSK</div>
-      <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-button">Home</a></li>
-        <li><a href="7_series_handling.html" class="nav-button">7 Series Handling</a></li>
-        <li><a href="7_series_creation.html" class="nav-button">7 Series Creation</a></li>
-        <li>
-          <a href="pms-creation.html" class="nav-button">PMS Creation</a>
-        </li>
-        <li><a href="tat.html" class="nav-button">TAT</a></li>
-        <li><a href="updates.html" class="nav-button">Updates</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Heading Section -->
-  <div class="heading">7 Series Handling</div>
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .bento-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-  <!-- Main Content -->
-  <main class="content">
-    <div class="bento-cards">
-      <div class="bento-card">
-        <h2>Status: In Progress</h2>
-        <h3>Sub-Scenario: Customer Waiting for Update</h3>
-        <p>Action: Inform the customer to wait and provide a TAT update.</p>
+      @media (max-width: 768px) {
+        .navbar {
+          flex-wrap: wrap;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: #1e293b;
+          padding: 10px 0;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          text-align: center;
+          margin: 10px 0;
+        }
+
+        .bento-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .heading {
+          font-size: 2rem;
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .nav-toggle {
+          font-size: 1.5rem;
+        }
+
+        .heading {
+          font-size: 1.5rem;
+        }
+
+        .bento-card h2 {
+          font-size: 1.3rem;
+        }
+
+        .bento-card h3 {
+          font-size: 1.1rem;
+        }
+
+        .bento-card p {
+          font-size: 0.9rem;
+        }
+
+        .scenario-box h2 {
+          font-size: 1.5rem;
+        }
+
+        .scenario-box {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button"
+              >7 Series Handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
+          <li>
+            <a href="pms-creation.html" class="nav-button">PMS Creation</a>
+          </li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="updates.html" class="nav-button">Updates</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Heading Section -->
+    <div class="heading">7 Series Handling</div>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="bento-cards">
+        <div class="bento-card">
+          <h2>Status: Open/WIP/In process</h2>
+          <h3>Sub-Scenario: 8 series is also not yet closed or cancelled</h3>
+          <p>
+            Action: Agent need to create interaction follow-up and ask customer
+            wait team will get back to you asap
+          </p>
+        </div>
+        <div class="bento-card">
+          <h2>Status: Techinically completed</h2>
+          <h3>Sub-Scenario: 8 series is also not yet closed or cancelled</h3>
+          <p>
+            Action: Edit 7 series status into "In process" and inform the
+            customer ASAP TAT
+          </p>
+        </div>
+        <div class="bento-card">
+          <h2>Status: Completed</h2>
+          <h3>Sub-Scenario: 8 series is also not yet closed or cancelled</h3>
+          <p>
+            Action: Agent need to create 7 series(complaint follow-up) by
+            mentioning complete remarks and ask customer to wait we will get
+            back to them asap(If SO is open)
+          </p>
+        </div>
+        <!-- Add more bento cards as needed -->
       </div>
-      <div class="bento-card">
-        <h2>Status: Completed</h2>
-        <h3>Sub-Scenario: Service Delivered</h3>
-        <p>Action: Thank the customer and close the service order.</p>
+
+      <div class="scenario-box">
+        <h2>
+          Unique Scenario: SO Status is completed/cancelled and Complaint
+          followup is open
+        </h2>
+        <p>
+          If So status is completed and complaint follow-up status is open then
+          we need to create new SO and on 7 series and will click on edit and in
+          transaction history will click on subsequent assign and change the
+          status as service order will paste the new so number in place of SO
+          number and will assign, will give asap TAT to customer.
+        </p>
       </div>
-      <div class="bento-card">
-        <h2>Status: Escalated</h2>
-        <h3>Sub-Scenario: Escalation Required</h3>
-        <p>Action: Assign to a higher authority for resolution.</p>
-      </div>
-      <!-- Add more bento cards as needed -->
-    </div>
+    </main>
 
-    <div class="scenario-box">
-      <h2>Unique Scenario: Handling Special Cases</h2>
-      <p>
-        Some unique cases require manual intervention. Ensure proper
-        escalation and prioritize based on customer urgency.
-      </p>
-    </div>
-  </main>
+    <!-- Footer -->
+    <footer>
+      <p>Made with ❤️ for the team by GSK</p>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>Made with ❤️ for the team by GSK</p>
-  </footer>
-
-  <script>
-    // Toggle mobile menu
-    function toggleMenu() {
-      const navLinks = document.querySelector(".nav-links");
-      navLinks.classList.toggle("active");
-    }
-  </script>
-</body>
+    <script>
+      // Toggle mobile menu
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+      }
+    </script>
+  </body>
 </html>

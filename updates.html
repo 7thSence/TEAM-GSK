@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Updates</title>
+    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <style>
       /* Global Styles */
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: "Lora", serif;
         background-color: #0f172a; /* Deep Navy Blue */
         color: #e5e7eb; /* Light Gray */
         margin: 0;
@@ -27,10 +28,12 @@
         padding: 15px 20px;
         color: #e5e7eb;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 10;
       }
 
       .logo {
-        font-family: "Poppins", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 2rem;
         font-weight: bold;
         color: #ffffff;
@@ -55,7 +58,7 @@
       .nav-button {
         display: inline-block;
         padding: 10px 20px;
-        font-family: "Poppins", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 1rem;
         font-weight: bold;
         text-decoration: none;
@@ -87,17 +90,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 30px 20px;
+        padding: 40px 20px;
         background: linear-gradient(90deg, #1e293b, #2563eb);
         color: #e5e7eb;
-        font-family: "Poppins", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 3rem;
-        margin: 20px auto;
-        max-width: 95%;
-        font-weight: bold;
+        margin: 40px auto;
+        max-width: 90%;
+        font-weight: 700;
         border-radius: 8px;
         text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         letter-spacing: 1.5px;
       }
 
@@ -106,11 +109,11 @@
         display: flex;
         justify-content: flex-end;
         margin: 20px auto;
-        max-width: 95%;
+        max-width: 90%;
       }
 
       .filter-section select {
-        font-family: "Roboto", sans-serif;
+        font-family: "Lora", serif;
         font-size: 1rem;
         padding: 10px;
         border-radius: 5px;
@@ -129,20 +132,24 @@
       .grid-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        gap: 30px;
         padding: 20px;
-        max-width: 95%;
-        margin: 0 auto;
+        max-width: 90%;
+        margin: 0 auto 60px auto;
       }
 
       /* Update Card Styling */
       .update-card {
         background-color: #1e293b;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 30px 20px;
         position: relative;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
       }
 
       .update-card:hover {
@@ -151,30 +158,35 @@
       }
 
       .update-card h3 {
-        font-family: "Poppins", sans-serif;
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
         color: #38bdf8;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        text-align: center;
       }
 
       .update-card p {
-        font-family: "Roboto", sans-serif;
-        font-size: 1rem;
+        font-family: "Lora", serif;
+        font-size: 1.1rem;
         color: #e5e7eb;
-        line-height: 1.6;
+        line-height: 1.8;
+        text-align: center;
+        margin-bottom: 40px;
       }
 
       .category-label {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 5px 10px;
+        top: 15px;
+        right: 15px;
+        padding: 5px 15px;
         font-size: 0.9rem;
         font-weight: bold;
         border-radius: 5px;
         color: #fff;
         text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 1px;
       }
 
       .tat {
@@ -185,7 +197,7 @@
         background-color: #10b981; /* Green */
       }
 
-      .hhh {
+      .Quality_related {
         background-color: #2563eb; /* Blue */
       }
 
@@ -209,7 +221,38 @@
         background-color: #4ade80; /* Lime */
       }
 
+      /* Flyer Button inside card */
+      .flyer-button {
+        position: relative;
+        display: inline-block;
+        background: #2563eb;
+        color: #e5e7eb;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
+        margin-top: auto;
+        align-self: center;
+      }
+
+      .flyer-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
       /* Responsive Design */
+      @media (max-width: 1024px) {
+        .grid-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
       @media (max-width: 768px) {
         .nav-toggle {
           display: block;
@@ -233,18 +276,21 @@
         }
 
         .grid-container {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .grid-container {
           grid-template-columns: 1fr;
         }
 
         .heading {
+          font-size: 2.5rem;
+          padding: 30px;
+          margin: 30px auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .heading {
           font-size: 2rem;
           padding: 20px;
+          margin: 20px auto;
         }
 
         .nav-toggle {
@@ -257,7 +303,7 @@
         padding: 20px;
         background-color: #1e293b;
         color: #e5e7eb;
-        font-family: "Poppins", sans-serif;
+        font-family: "Montserrat", sans-serif;
       }
     </style>
   </head>
@@ -297,7 +343,7 @@
         <option value="all">All Categories</option>
         <option value="tat">TAT Related</option>
         <option value="product">Product Related</option>
-        <option value="hhh">HHH</option>
+        <option value="Quality_related">Quality_related</option>
         <option value="performance">Performance Related</option>
         <option value="sap">SAP Related</option>
         <option value="probing">Probing Related</option>
@@ -309,13 +355,20 @@
     <!-- Grid of Updates -->
     <div class="grid-container">
       <div class="update-card">
-        <div class="category-label tat">TAT Related</div>
-        <h3>Update 1</h3>
+        <div class="category-label product">Product Related</div>
+        <h3>BPL Room heater fan</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate.
+          We're not supposed to raise the request for installtion or demo for
+          BPL room heater fans.
         </p>
+        <!-- Example flyer button (replace href with actual flyer link) -->
+        <a
+          href="https://i.postimg.cc/nLFM82JB/BPL-heater-fan-update.png"
+          class="flyer-button"
+          >Flyer</a
+        >
       </div>
+
       <div class="update-card">
         <div class="category-label product">Product Related</div>
         <h3>Update 2</h3>
@@ -323,15 +376,31 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate.
         </p>
+        <!-- Replace 'images/flyer2.png' with actual flyer image link -->
+        <a
+          href="images/flyer2.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flyer-button"
+          >Flyer</a
+        >
       </div>
 
       <div class="update-card">
-        <div class="category-label hhh">HHH</div>
+        <div class="category-label Quality_related">Quality_related</div>
         <h3>Update 3</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate.
         </p>
+        <!-- Replace 'images/flyer3.png' with actual flyer image link -->
+        <a
+          href="images/flyer3.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flyer-button"
+          >Flyer</a
+        >
       </div>
       <!-- Add more update cards as needed -->
     </div>
@@ -360,6 +429,8 @@
 
           if (selectedCategory === "all" || category === selectedCategory) {
             card.style.display = "block";
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
           } else {
             card.style.display = "none";
           }

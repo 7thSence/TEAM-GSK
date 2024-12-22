@@ -151,7 +151,7 @@
       /* FLIP CARD - 3D */
       .flip-card {
         width: 100%;
-        height: 380px; /* adjust as needed for your content */
+        height: 380px;
         perspective: 1000px; /* This container sets the 3D perspective */
         animation: fadeInUp 1s ease both;
         position: relative;
@@ -196,7 +196,6 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
-        overflow: hidden;
       }
       .flip-card-front {
         background: linear-gradient(
@@ -209,6 +208,10 @@
       .flip-card-back {
         background: linear-gradient(135deg, #2a3c5e 0%, #1e293b 100%);
         transform: rotateY(180deg);
+
+        /* MAKE THE BACK TEXT LARGER & TOP-ALIGNED */
+        align-items: flex-start; /* Start from top */
+        padding: 30px; /* More padding for comfort */
       }
       .flip-card-front:hover,
       .flip-card-back:hover {
@@ -228,16 +231,32 @@
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       }
 
+      /* ENLARGE TEXT ON THE BACK */
+      .flip-card-back h3 {
+        font-size: 1.7rem;
+        margin-top: 0; /* remove extra top spacing */
+      }
+
       /* SHORT TEXT */
       .card-summary,
       .card-details {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 1rem;
         color: #e5e7eb;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      }
+      /* Keep front small text as is */
+      .card-summary {
+        font-size: 1rem;
         text-align: center;
         line-height: 1.5;
         margin-bottom: 10px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      }
+      /* Make the back bigger */
+      .card-details {
+        font-size: 1.15rem; /* bigger text */
+        line-height: 1.6; /* more comfortable spacing */
+        text-align: left; /* left-align for better readability */
+        margin-bottom: 20px;
       }
 
       /* CATEGORY LABELS (Inside the FRONT) */
@@ -284,17 +303,18 @@
 
       /* LINK BUTTON ON BACK SIDE */
       .flyer-button {
-        margin-top: auto;
+        margin-top: auto; /* Keep button near bottom if content expands */
         background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
         color: #e5e7eb;
         font-family: "Montserrat", sans-serif;
         font-weight: bold;
-        font-size: 0.9rem;
-        padding: 10px 20px;
+        font-size: 1rem;
+        padding: 12px 24px;
         border-radius: 50px;
         text-decoration: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        align-self: center; /* center horizontally in the back */
       }
       .flyer-button:hover {
         background: #1d4ed8;
@@ -358,7 +378,10 @@
           margin: 30px auto 20px auto;
         }
         .flip-card {
-          height: 420px; /* increase for smaller screens */
+          height: 420px;
+        }
+        .flip-card-back {
+          padding: 30px;
         }
       }
       @media (max-width: 480px) {
@@ -371,7 +394,10 @@
           font-size: 1.5rem;
         }
         .flip-card {
-          height: 460px; /* further adjust for very small screens */
+          height: 460px;
+        }
+        .flip-card-back {
+          padding: 30px;
         }
       }
 
@@ -535,7 +561,7 @@
               <p>
                 🗣️ Non-registered? <strong>Ask</strong> the customer directly.
               </p>
-              <p>✅ Ensures smooth ops & compliance.</p>
+              <p>✅ Smooth operations & compliance.</p>
             </div>
             <a
               href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
@@ -979,8 +1005,8 @@
             <h3>WebOS Promo</h3>
             <div class="card-details">
               <p>
-                🛠️ Additional <strong>1-year warranty</strong> on select 32"
-                WebOS Lite TVs.
+                🛠️ Additional <strong>1-year warranty</strong> on 32" WebOS Lite
+                TVs.
               </p>
               <p>🗓️ Valid Oct 1 to Nov 10, 2024.</p>
               <p>🚫 Excluding Kerala.</p>
@@ -1053,7 +1079,7 @@
           <!-- BACK -->
           <div class="flip-card-back">
             <h3>Toll-Free Numbers</h3>
-            <div class="card-details" style="text-align: left">
+            <div class="card-details">
               <p>🩺 BPL Medical: 1800-425-2355</p>
               <p>📹 BPL CCTV: 1800-180-2087</p>
               <p>🏬 Jio Mart: 1800-890-1222</p>
@@ -1097,7 +1123,7 @@
           const labelFront = card.querySelector(
             ".flip-card-front .category-label"
           );
-          if (!labelFront) return; // no label found, skip
+          if (!labelFront) return;
 
           // extract the category from the label's class
           const matchedCategory = [...labelFront.classList].find(
@@ -1127,4 +1153,3 @@
     </script>
   </body>
 </html>
-

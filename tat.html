@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Purchase Platform - Tagging - TAT</title>
+
+    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -16,7 +18,7 @@
         box-sizing: border-box;
       }
       body {
-        font-family: "Poppins", sans-serif;
+        font-family: "Poppins", "Inter", sans-serif;
         background-color: #0f172a; /* Deep Navy Blue */
         color: #e5e7eb; /* Light Gray */
         overflow-x: hidden;
@@ -31,7 +33,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #1e293b;
+        background: #1e293b; /* Dark Blue-Black */
         padding: 15px 20px;
         color: #e5e7eb;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -46,9 +48,7 @@
         list-style: none;
         display: flex;
         gap: 15px;
-      }
-      .nav-links li {
-        margin: 0;
+        transition: all 0.3s ease;
       }
       .nav-button {
         display: inline-block;
@@ -65,6 +65,16 @@
         background: #1d4ed8;
         transform: translateY(-3px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* HAMBURGER ICON (hidden on desktop) */
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        cursor: pointer;
       }
 
       /* HEADING */
@@ -126,57 +136,38 @@
         padding: 20px;
       }
 
-      /* SUBSECTION HEADERS */
-      .subheader {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 6px;
-        text-transform: capitalize;
-      }
+      /* ROW BLOCKS */
       .card-row {
         background-color: #22304a;
         border-radius: 6px;
         margin-bottom: 15px;
-        padding: 10px;
+        padding: 12px;
         border: 1px solid #334155;
+        transition: background 0.3s ease;
       }
       .card-row h4 {
         font-weight: 600;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
       }
       .card-row p {
-        margin: 3px 0;
+        margin: 4px 0;
+        line-height: 1.5;
       }
+
+      /* UNIQUE HIGHLIGHTS */
+      /* - Subtle but distinct color for "From Dealer" and "From reliance store" */
+      .card-row.dealer {
+        border-left: 6px solid #2cbeba; /* TEAL accent for dealer */
+      }
+      .card-row.reliance {
+        border-left: 6px solid #fa5a46; /* CORAL accent for reliance store */
+      }
+
       .note {
         color: red;
         font-size: 0.9rem;
-        display: block;
         margin-top: 4px;
-      }
-
-      /* ACCORDION-LIKE ANIMATION */
-      .toggle-section {
-        margin-top: 10px;
-        background-color: #1d4ed8;
-        color: #fff;
-        cursor: pointer;
-        padding: 8px 12px;
-        border-radius: 4px;
-        text-align: center;
-        font-weight: 600;
-        transition: background 0.3s;
-      }
-      .toggle-section:hover {
-        background-color: #164bbf;
-      }
-      /* Hidden content container */
-      .hidden-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
-      }
-      .hidden-content.show {
-        max-height: 999px; /* just large enough to show all content */
       }
 
       /* FOOTER */
@@ -191,6 +182,17 @@
 
       /* MEDIA QUERIES */
       @media (max-width: 768px) {
+        .nav-links {
+          display: none; /* Hide nav links by default on mobile */
+          flex-direction: column;
+          gap: 10px;
+        }
+        .nav-links.active {
+          display: flex; /* Show when toggled */
+        }
+        .menu-icon {
+          display: block; /* Show hamburger on mobile */
+        }
         .heading {
           font-size: 2rem;
         }
@@ -203,6 +205,7 @@
     <header>
       <nav class="navbar">
         <div class="logo">Team GSK</div>
+        <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-button">Home</a></li>
           <li>
@@ -227,7 +230,7 @@
     <!-- HEADING -->
     <div class="heading">Purchased from - Tagging - TAT</div>
 
-    <!-- MAIN CONTENT WRAPPER -->
+    <!-- MAIN WRAPPER (Cards) -->
     <div class="main-wrapper">
       <!-- CARD 1: Installation -->
       <div class="card">
@@ -235,12 +238,14 @@
           <h2>Installation</h2>
         </div>
         <div class="card-content">
-          <div class="card-row">
+          <!-- From Dealer -->
+          <div class="card-row dealer">
             <h4>From Dealer</h4>
             <p><strong>Tagging:</strong> GT Installation</p>
             <p><strong>TAT:</strong> 24 hrs</p>
           </div>
-          <div class="card-row">
+          <!-- From reliance store -->
+          <div class="card-row reliance">
             <h4>From reliance store</h4>
             <p><strong>Tagging:</strong> Standard Installation</p>
             <p><strong>TAT:</strong> 24 hrs</p>
@@ -254,7 +259,8 @@
           <h2>Demo</h2>
         </div>
         <div class="card-content">
-          <div class="card-row">
+          <!-- From Dealer -->
+          <div class="card-row dealer">
             <h4>From Dealer</h4>
             <p>
               <strong>Tagging:</strong> GT Demo
@@ -262,7 +268,8 @@
             </p>
             <p><strong>TAT:</strong> 24 hrs</p>
           </div>
-          <div class="card-row">
+          <!-- From reliance store -->
+          <div class="card-row reliance">
             <h4>From reliance store</h4>
             <p><strong>Tagging:</strong> Demo of Product</p>
             <p><strong>TAT:</strong> 24 hrs</p>
@@ -276,17 +283,20 @@
           <h2>Repair</h2>
         </div>
         <div class="card-content">
-          <div class="card-row">
+          <!-- From Dealer -->
+          <div class="card-row dealer">
             <h4>From Dealer</h4>
             <p><strong>Tagging:</strong> GT Repair</p>
             <p><strong>TAT:</strong> 72 hrs</p>
           </div>
-          <div class="card-row">
+          <!-- From reliance store -->
+          <div class="card-row reliance">
             <h4>From reliance store</h4>
             <p><strong>Tagging:</strong> Repair SVC @ Customer Site</p>
             <p><strong>TAT:</strong> 72 hrs</p>
           </div>
-          <div class="card-row">
+          <!-- Stock Complaint -->
+          <div class="card-row" style="border-left: 6px solid #7c3aed">
             <h4>Stock Complaint</h4>
             <p><strong>Tagging:</strong> GT Distributor Repair</p>
             <p><strong>TAT:</strong> 72 hrs</p>
@@ -305,7 +315,7 @@
             <p><strong>Tagging:</strong> Dry AC, Wet AC</p>
             <p><strong>TAT:</strong> 48 hrs / Appointment date</p>
           </div>
-          <div class="card-row">
+          <div class="card-row" style="border-left: 6px solid #f59e0b">
             <h4>Only if Customer specifies by the term</h4>
             <p>
               <strong>Tagging:</strong> Jet AC (if customer agrees for charges)
@@ -321,7 +331,8 @@
           <h2>Uninstallation</h2>
         </div>
         <div class="card-content">
-          <div class="card-row">
+          <!-- From Dealer -->
+          <div class="card-row dealer">
             <h4>From Dealer</h4>
             <p>
               <strong>Tagging:</strong> GT Uninstallation
@@ -331,7 +342,8 @@
             </p>
             <p><strong>TAT:</strong> 24 hrs</p>
           </div>
-          <div class="card-row">
+          <!-- From reliance store -->
+          <div class="card-row reliance">
             <h4>From reliance store</h4>
             <p><strong>Tagging:</strong> Old Product Uninstallation</p>
             <p><strong>TAT:</strong> 24 hrs</p>
@@ -344,5 +356,13 @@
     <footer>
       <p>Made with ❤️ for the team by GSK</p>
     </footer>
+
+    <script>
+      // MOBILE MENU TOGGLE
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+      }
+    </script>
   </body>
 </html>

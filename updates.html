@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Updates</title>
+
     <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap"
@@ -31,7 +32,6 @@
         position: relative;
         z-index: 10;
       }
-
       .logo {
         font-family: "Montserrat", sans-serif;
         font-size: 2rem;
@@ -41,7 +41,6 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         border-bottom: 4px solid #38bdf8;
       }
-
       .nav-links {
         list-style: none;
         display: flex;
@@ -50,11 +49,9 @@
         padding: 0;
         transition: max-height 0.3s ease-in-out;
       }
-
       .nav-links li {
         margin: 0;
       }
-
       .nav-button {
         display: inline-block;
         padding: 10px 20px;
@@ -69,13 +66,11 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease,
           background 0.3s ease;
       }
-
       .nav-button:hover {
         background: #1d4ed8;
         transform: translateY(-3px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
       }
-
       .nav-toggle {
         display: none;
         background: none;
@@ -111,7 +106,6 @@
         margin: 20px auto;
         max-width: 90%;
       }
-
       .filter-section select {
         font-family: "Lora", serif;
         font-size: 1rem;
@@ -122,7 +116,6 @@
         color: #e5e7eb;
         transition: border 0.3s ease;
       }
-
       .filter-section select:focus {
         outline: none;
         border-color: #2563eb;
@@ -140,11 +133,6 @@
 
       /* Update Card Styling */
       .update-card {
-        /* New design approach:
-           - Use a subtle gradient background
-           - Add a thin border highlight
-           - Rounded corners, inner shadow for depth
-        */
         background: linear-gradient(
           135deg,
           #1e293b 0%,
@@ -156,14 +144,14 @@
           inset 0 0 10px rgba(0, 0, 0, 0.3);
         padding: 30px 20px;
         position: relative;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         border: 1px solid #38bdf8; /* Subtle border highlight */
       }
-
       .update-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5),
@@ -175,7 +163,6 @@
           #1e293b 100%
         );
       }
-
       .update-card h3 {
         font-family: "Montserrat", sans-serif;
         font-size: 1.8rem;
@@ -185,7 +172,6 @@
         text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       }
-
       .update-card p {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 1.1rem;
@@ -197,6 +183,7 @@
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
       }
 
+      /* Category Labels (Pills) */
       .category-label {
         position: absolute;
         top: 15px;
@@ -209,44 +196,35 @@
         text-transform: uppercase;
         font-family: "Montserrat", sans-serif;
         letter-spacing: 1px;
-        /* Make it stand out as a pill shape with a subtle glow */
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.4),
           inset 0 0 4px rgba(255, 255, 255, 0.1);
       }
-
       .tat {
         background-color: #ee0d5f;
       }
-
       .product {
         background-color: #f97316;
       }
-
       .Quality_related {
         background-color: #2563eb;
       }
-
       .performance {
         background-color: #eab308;
       }
-
       .sap {
         background-color: #6b7280;
       }
-
       .probing {
         background-color: #8b5cf6;
       }
-
       .dealer {
         background-color: #f43f5e;
       }
-
       .script {
         background-color: #4ade80;
       }
 
-      /* Flyer Button inside card */
+      /* Flyer Button */
       .flyer-button {
         position: relative;
         display: inline-block;
@@ -264,7 +242,6 @@
         margin-top: auto;
         align-self: center;
       }
-
       .flyer-button:hover {
         background: #1d4ed8;
         transform: translateY(-3px);
@@ -277,12 +254,10 @@
           grid-template-columns: repeat(2, 1fr);
         }
       }
-
       @media (max-width: 768px) {
         .nav-toggle {
           display: block;
         }
-
         .nav-links {
           display: none;
           flex-direction: column;
@@ -295,34 +270,30 @@
           padding: 20px;
           border-radius: 8px;
         }
-
         .nav-links.active {
           display: flex;
         }
-
         .grid-container {
           grid-template-columns: 1fr;
         }
-
         .heading {
           font-size: 2.5rem;
           padding: 30px;
           margin: 30px auto;
         }
       }
-
       @media (max-width: 480px) {
         .heading {
           font-size: 2rem;
           padding: 20px;
           margin: 20px auto;
         }
-
         .nav-toggle {
           font-size: 1.5rem;
         }
       }
 
+      /* Footer */
       footer {
         text-align: center;
         padding: 20px;
@@ -379,115 +350,259 @@
 
     <!-- Grid of Updates -->
     <div class="grid-container">
+      <!-- Example TAT Card (to test TAT filter) -->
+
+      <!-- Card 1 -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
-        <h3>New Room Heater Product Line Launched!</h3>
+        <h3>🔥 New Room Heater Product Line Launched! ❄️</h3>
         <p>
-          Explore the latest range of BPL and WYZR room heaters, available in
-          Fan, Halogen, and Quartz types with repair warranties and in-home
-          service. No installation required—click flyer to see details and
-          article codes.
+          🌟 Explore the latest range of <strong>BPL</strong> and
+          <strong>WYZR</strong> room heaters! 🌬️ Available in Fan, Halogen, and
+          Quartz types with 🔧 <strong>repair warranties</strong> and 🏠
+          <strong>in-home service</strong>. 🚫
+          <strong>No installation required</strong>—click the flyer to see
+          details and article codes!
         </p>
-        <!-- Example flyer button (replace href with actual flyer link) -->
         <a
           href="https://i.postimg.cc/QCYyQ1LR/No-installtion-for-room-heaters.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          >Click here</a
         >
+          Click here
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="update-card">
+        <div class="category-label probing">Probing Related</div>
+        <h3>📅 Important: Date of Purchase Verification 🔍</h3>
+        <p>
+          🤝 Agents must <strong>proactively confirm</strong> the date of
+          purchase for registered numbers. 🗣️ For non-registered numbers,
+          <strong>verify by asking</strong> the customer. ✅ Follow the updated
+          guidelines to ensure smooth operations and compliance. 🚀 Stay
+          accurate and efficient while assisting customers!
+        </p>
+
+        <a
+          href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here
+        </a>
+      </div>
+
+      <div class="update-card">
+        <div class="category-label sap">SAP related</div>
+        <h3>🚨 RED ALERT 🚨</h3>
+        <p>
+          ❌ <strong>We are NOT allowed to CANCEL</strong> any service order,
+          request, or complaint. ⚠️ This activity falls under our
+          <strong>ZERO TOLERANCE POLICY</strong>.
+        </p>
+        <p>
+          🔒 <strong>Important:</strong> Do NOT share your CRM ID and Password
+          with anyone!
+        </p>
+        <p>
+          🚫 Protect your credentials and adhere to company policies to avoid
+          violations.
+        </p>
+
+        <a
+          href="https://i.postimg.cc/hjrLmBSC/cancel-so.jpg"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here
+        </a>
       </div>
 
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
-        <h3>Important: Date of Purchase Verification</h3>
+        <h3>🔍 Verification Process: Address Confirmation</h3>
         <p>
-          Agents must proactively confirm the date of purchase for registered
-          numbers and verify by asking for non-registered numbers. Follow the
-          updated guidelines to ensure smooth operations and compliance.
+          📞 <strong>Calling from a non-registered number?</strong> Whether
+          you're a dealer or a customer, ensuring accurate details is key!
         </p>
-        <!-- Replace 'images/flyer2.png' with actual flyer image link -->
+        <p>
+          🏠 <strong>Verify:</strong> Address details must match the system
+          records.
+        </p>
+        <p>
+          ❌ <strong>Mismatch?</strong> Confirm the address again to ensure
+          smooth resolution of complaints.
+        </p>
+
         <a
-          href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
+          href="https://i.postimg.cc/k50CS2Jc/verfication.png"
+          class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          class="flyer-button"
-          >Click here</a
         >
+          Click here
+        </a>
       </div>
 
+      <!-- Card 3 -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
-        <h3>BPL Room Heater Fan Request Guidelines</h3>
+        <h3>🌬️ BPL Room Heater Fan Request Guidelines 🔧</h3>
         <p>
-          Learn how to handle customer and dealer calls for BPL Room Heater
-          Fans. Raise SOs for repairs and stock issues, but note: requests for
-          installation or demos are not allowed.
+          📞 Learn how to handle customer and dealer calls for BPL Room Heater
+          Fans. 🛠️ Raise <strong>SOs</strong> for repairs and stock issues. 🚫
+          <strong>Note:</strong> Requests for installation or demos are not
+          allowed. 🔍 Keep things efficient and follow the guidelines for
+          seamless support!
         </p>
-        <!-- Example flyer button (replace href with actual flyer link) -->
+
         <a
           href="https://i.postimg.cc/nLFM82JB/BPL-heater-fan-update.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          >Click here</a
         >
+          Click here
+        </a>
       </div>
 
       <div class="update-card">
-        <div class="category-label product">Product Related</div>
-        <h3>BPL TV Warranty Extension Promo</h3>
+        <div class="category-label sap">SAP related</div>
+        <h3>📝 Account Creation: Importance of Accuracy ✅</h3>
         <p>
-          Check out the festival promo offering an additional 1-year warranty on
-          select BPL TVs. Valid for purchases from October 1 to November 10,
-          2024, across India (excluding Kerala).
+          😊 <strong>Expectation:</strong> - Ensure accurate details like name,
+          contact, and address for smooth service. ❌
+          <strong>Bad Experience:</strong>
+          Example: "I apologize, Mr. Mohit, your request was canceled due to
+          incorrect details."
         </p>
-        <!-- Example flyer button (replace href with actual flyer link) -->
+        <p>
+          🚨 <strong>Reminder:</strong>
+          - 🛑 DO NOT RUSH. - Attention to detail ensures happy customers and
+          seamless service!
+        </p>
+
+        <a
+          href="https://i.postimg.cc/FskcxcG5/Untitled-design.png"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="update-card">
+        <div class="category-label product">Product Related</div>
+        <h3>📺 BPL TV Warranty Extension Promo 🎉</h3>
+        <p>
+          🛠️ Check out the festival promo offering an additional
+          <strong>1-year warranty</strong> on select BPL TVs! 🗓️
+          <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
+          <strong>Where:</strong> Across India (🚫 Excluding Kerala).
+        </p>
+
         <a
           href="https://i.postimg.cc/t409zvd3/PHOTO-2024-12-12-15-11-24-3.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          >Click here</a
         >
+          Click here
+        </a>
       </div>
 
+      <!-- Card 5 -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
-        <h3>DOA TR Approved Cases: Refund Process</h3>
+        <h3>💰 DOA TR Approved Cases: Refund Process 💰</h3>
         <p>
-          For cases where replacements are not provided under DOA-TR approvals,
-          refunds will be initiated. Provide the TR number and request customers
-          to share product details via the provided email for processing
+          🔄 For cases where replacements are not provided under DOA-TR
+          approvals, refunds will be initiated. 📜 <strong>Steps:</strong> 1️⃣
+          Provide the <strong>TR number</strong> to the customer. 2️⃣ Request
+          customers to share product details via the provided 📧
+          <strong>email</strong> for processing. 💡 Keep things smooth and
+          simple for quick resolutions!
         </p>
-        <!-- Replace 'images/flyer2.png' with actual flyer image link -->
         <a
           href="https://i.postimg.cc/Wzs9G7JT/PHOTO-2024-12-12-15-11-23-4.jpg"
+          class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          class="flyer-button"
-          >Click here</a
         >
+          Click here
+        </a>
       </div>
 
+      <!-- Card 6 -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
-        <h3>Warranty Extension for 32" WebOS Lite TVs</h3>
+        <h3>🎉 Warranty Extension for 32" WebOS Lite TVs 🎉</h3>
         <p>
-          Check out the festival promo offering an additional 1-year warranty on
-          select BPL TVs. Valid for purchases from October 1 to November 10,
-          2024, across India (excluding Kerala).
+          🛠️ Check out the festival promo offering an additional
+          <strong>1-year warranty</strong> on select BPL TVs! 🗓️
+          <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
+          <strong>Where:</strong> Across India (🚫 Excluding Kerala).
         </p>
-        <!-- Example flyer button (replace href with actual flyer link) -->
         <a
           href="https://i.postimg.cc/Y9L4XcYx/WEBOS-tv.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
-          >Click here</a
         >
+          Click here
+        </a>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="update-card">
+        <div class="category-label sap">SAP related</div>
+        <h3>🚛🔧 Product Uninstallation Made Easy!</h3>
+        <p>
+          🛒 Bought from Flipkart, Amazon, or local dealers? ➡️ Select "GT
+          Uninstallation". 🏬 Purchased via Reliance Digital/JioMart? ➡️ Choose
+          "Old Product Un-Inst". Let’s keep it simple and smooth! 😎✨ Click to
+          learn the steps.
+        </p>
+        <a
+          href="https://i.postimg.cc/rzXYdLCZ/uniinstallation.jpg"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here
+        </a>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="update-card">
+        <div class="category-label probing">Probing Related</div>
+        <h3>☎️ Your Toll-Free Help Desk Is Here!</h3>
+        <p>
+          🩺 BPL Medical Equipment: 1800-425-2355<br />
+          📹 BPL CCTV: 1800-180-2087<br />
+          🏬 Jio Mart: 1800-890-1222<br />
+          💡 Kelvinator: 1800-889-1045<br />
+          🌟 Disney, LYF, WYZR: Multiple options available!<br />
+          Click to explore the full list! 🎉
+        </p>
+        <a
+          href="https://i.postimg.cc/tTyrHHN9/toll-free.jpg"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here
+        </a>
       </div>
     </div>
+    <!-- End of Grid -->
 
     <!-- Footer -->
     <footer>
@@ -509,14 +624,21 @@
         const selectedCategory = categoryFilter.value;
 
         updateCards.forEach((card) => {
-          const category = card.querySelector(".category-label").classList[1];
+          // Extract the actual category (e.g. "tat", "probing", "product", etc.)
+          const cardClasses = card.querySelector(".category-label").classList;
+          // We know the first class is "category-label", so the second is the category
+          // OR we find it by excluding "category-label" if order is uncertain:
+          let matchedCategory = [...cardClasses].find(
+            (c) => c !== "category-label"
+          );
 
-          if (selectedCategory === "all" || category === selectedCategory) {
-            card.style.display = "block";
-            card.style.opacity = "1";
-            card.style.transform = "scale(1)";
+          if (
+            selectedCategory === "all" ||
+            matchedCategory === selectedCategory
+          ) {
+            card.style.display = "block"; // show
           } else {
-            card.style.display = "none";
+            card.style.display = "none"; // hide
           }
         });
       });

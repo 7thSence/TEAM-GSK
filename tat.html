@@ -19,10 +19,11 @@
         font-family: "Poppins", sans-serif;
         background-color: #0f172a; /* Deep Navy Blue */
         color: #e5e7eb; /* Light Gray */
+        overflow-x: hidden;
       }
       a {
-        color: inherit;
         text-decoration: none;
+        color: inherit;
       }
 
       /* NAVBAR */
@@ -45,6 +46,9 @@
         list-style: none;
         display: flex;
         gap: 15px;
+      }
+      .nav-links li {
+        margin: 0;
       }
       .nav-button {
         display: inline-block;
@@ -81,98 +85,98 @@
         letter-spacing: 1.5px;
       }
 
-      /* TABS WRAPPER */
-      .tabs-container {
+      /* MAIN WRAPPER */
+      .main-wrapper {
         width: 90%;
         max-width: 1200px;
-        margin: 30px auto 50px auto;
+        margin: 40px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
       }
 
-      /* TABS - RADIO BUTTONS (hidden) */
-      input[type="radio"] {
-        display: none;
-      }
-
-      /* TABS - LABELS (the clickable tab headers) */
-      .tabs-labels {
-        display: flex;
-        flex-wrap: wrap; /* wrap if narrow screens */
-        gap: 5px;
-        background-color: #1e293b;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-      }
-      .tabs-label {
-        flex: 1 1 auto; /* let them size flexibly */
-        text-align: center;
-        padding: 15px 10px;
-        cursor: pointer;
-        font-weight: 600;
-        color: #e5e7eb;
-        background-color: #2563eb; /* default unselected tab color */
-        transition: background 0.3s;
-      }
-      .tabs-label:hover {
-        background-color: #1d4ed8; /* darken on hover */
-      }
-
-      /* SHOW SELECTED TAB LABEL */
-      input[type="radio"]:checked + .tabs-label {
-        background-color: #1e293b; /* Dark background for selected tab */
-        color: #38bdf8; /* highlight text */
-      }
-
-      /* TAB CONTENT */
-      .tab-content {
+      /* CARD */
+      .card {
         background: #1e293b;
-        color: #e5e7eb;
-        padding: 20px;
-        margin-top: -1px; /* to slightly overlap the tab bar */
         border-radius: 8px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-        display: none; /* hidden by default */
-        animation: fadeIn 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
       }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      /* Only show the content of the selected tab */
-      #tab-installation:checked ~ .tab-content-installation,
-      #tab-demo:checked ~ .tab-content-demo,
-      #tab-repair:checked ~ .tab-content-repair,
-      #tab-pms:checked ~ .tab-content-pms,
-      #tab-unstall:checked ~ .tab-content-unstall {
-        display: block;
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
       }
 
-      /* ROW STYLING (like table rows) */
-      .row-block {
-        margin-bottom: 15px;
-        border: 1px solid #334155;
-        border-radius: 6px;
-        background-color: #22304a;
-        padding: 10px;
+      /* CARD HEADER */
+      .card-header {
+        background: #2563eb;
+        padding: 15px;
+        text-align: center;
       }
-      .row-block h4 {
-        margin-bottom: 6px;
+      .card-header h2 {
+        font-size: 1.4rem;
         font-weight: 600;
+        color: #e5e7eb;
+        text-transform: uppercase;
       }
-      .row-block p {
-        margin: 4px 0;
+
+      /* CARD CONTENT */
+      .card-content {
+        padding: 20px;
+      }
+
+      /* SUBSECTION HEADERS */
+      .subheader {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        text-transform: capitalize;
+      }
+      .card-row {
+        background-color: #22304a;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #334155;
+      }
+      .card-row h4 {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .card-row p {
+        margin: 3px 0;
       }
       .note {
         color: red;
+        font-size: 0.9rem;
+        display: block;
         margin-top: 4px;
+      }
+
+      /* ACCORDION-LIKE ANIMATION */
+      .toggle-section {
+        margin-top: 10px;
+        background-color: #1d4ed8;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+      .toggle-section:hover {
+        background-color: #164bbf;
+      }
+      /* Hidden content container */
+      .hidden-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .hidden-content.show {
+        max-height: 999px; /* just large enough to show all content */
       }
 
       /* FOOTER */
@@ -185,21 +189,15 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
 
-      /* RESPONSIVE */
+      /* MEDIA QUERIES */
       @media (max-width: 768px) {
-        .nav-links {
-          flex-direction: column;
-          gap: 10px;
-        }
         .heading {
           font-size: 2rem;
-        }
-        .tabs-labels {
-          flex-direction: column;
         }
       }
     </style>
   </head>
+
   <body>
     <!-- NAVBAR -->
     <header>
@@ -229,106 +227,115 @@
     <!-- HEADING -->
     <div class="heading">Purchased from - Tagging - TAT</div>
 
-    <!-- TABS -->
-    <div class="tabs-container">
-      <!-- Radio Buttons -->
-      <input type="radio" name="tabs" id="tab-installation" checked />
-      <label for="tab-installation" class="tabs-label">Installation</label>
-
-      <input type="radio" name="tabs" id="tab-demo" />
-      <label for="tab-demo" class="tabs-label">Demo</label>
-
-      <input type="radio" name="tabs" id="tab-repair" />
-      <label for="tab-repair" class="tabs-label">Repair</label>
-
-      <input type="radio" name="tabs" id="tab-pms" />
-      <label for="tab-pms" class="tabs-label">PMS</label>
-
-      <input type="radio" name="tabs" id="tab-unstall" />
-      <label for="tab-unstall" class="tabs-label">Uninstallation</label>
-
-      <!-- TAB CONTENT: INSTALLATION -->
-      <div class="tab-content tab-content-installation">
-        <div class="row-block">
-          <h4>From Dealer</h4>
-          <p><strong>Tagging:</strong> GT Installation</p>
-          <p><strong>TAT:</strong> 24 hrs</p>
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-wrapper">
+      <!-- CARD 1: Installation -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Installation</h2>
         </div>
-        <div class="row-block">
-          <h4>From reliance store</h4>
-          <p><strong>Tagging:</strong> Standard Installation</p>
-          <p><strong>TAT:</strong> 24 hrs</p>
+        <div class="card-content">
+          <div class="card-row">
+            <h4>From Dealer</h4>
+            <p><strong>Tagging:</strong> GT Installation</p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
+          <div class="card-row">
+            <h4>From reliance store</h4>
+            <p><strong>Tagging:</strong> Standard Installation</p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
         </div>
       </div>
 
-      <!-- TAB CONTENT: DEMO -->
-      <div class="tab-content tab-content-demo">
-        <div class="row-block">
-          <h4>From Dealer</h4>
-          <p>
-            <strong>Tagging:</strong> GT Demo
-            <span class="note">(In case of error use "Demo of Product")</span>
-          </p>
-          <p><strong>TAT:</strong> 24 hrs</p>
+      <!-- CARD 2: Demo -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Demo</h2>
         </div>
-        <div class="row-block">
-          <h4>From reliance store</h4>
-          <p><strong>Tagging:</strong> Demo of Product</p>
-          <p><strong>TAT:</strong> 24 hrs</p>
-        </div>
-      </div>
-
-      <!-- TAB CONTENT: REPAIR -->
-      <div class="tab-content tab-content-repair">
-        <div class="row-block">
-          <h4>From Dealer</h4>
-          <p><strong>Tagging:</strong> GT Repair</p>
-          <p><strong>TAT:</strong> 72 hrs</p>
-        </div>
-        <div class="row-block">
-          <h4>From reliance store</h4>
-          <p><strong>Tagging:</strong> Repair SVC @ Customer Site</p>
-          <p><strong>TAT:</strong> 72 hrs</p>
-        </div>
-        <div class="row-block">
-          <h4>Stock Complaint</h4>
-          <p><strong>Tagging:</strong> GT Distributor Repair</p>
-          <p><strong>TAT:</strong> 72 hrs</p>
+        <div class="card-content">
+          <div class="card-row">
+            <h4>From Dealer</h4>
+            <p>
+              <strong>Tagging:</strong> GT Demo
+              <span class="note">(In case of error use "Demo of Product")</span>
+            </p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
+          <div class="card-row">
+            <h4>From reliance store</h4>
+            <p><strong>Tagging:</strong> Demo of Product</p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
         </div>
       </div>
 
-      <!-- TAB CONTENT: PMS -->
-      <div class="tab-content tab-content-pms">
-        <div class="row-block">
-          <h4>Any Platform</h4>
-          <p><strong>Tagging:</strong> Dry AC, Wet AC</p>
-          <p><strong>TAT:</strong> 48 hrs / Appointment date</p>
+      <!-- CARD 3: Repair -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Repair</h2>
         </div>
-        <div class="row-block">
-          <h4>Only if Customer specifies by the term</h4>
-          <p>
-            <strong>Tagging:</strong> Jet AC (if customer agrees for charges)
-          </p>
-          <p><strong>TAT:</strong> 48 hrs / Appointment date</p>
+        <div class="card-content">
+          <div class="card-row">
+            <h4>From Dealer</h4>
+            <p><strong>Tagging:</strong> GT Repair</p>
+            <p><strong>TAT:</strong> 72 hrs</p>
+          </div>
+          <div class="card-row">
+            <h4>From reliance store</h4>
+            <p><strong>Tagging:</strong> Repair SVC @ Customer Site</p>
+            <p><strong>TAT:</strong> 72 hrs</p>
+          </div>
+          <div class="card-row">
+            <h4>Stock Complaint</h4>
+            <p><strong>Tagging:</strong> GT Distributor Repair</p>
+            <p><strong>TAT:</strong> 72 hrs</p>
+          </div>
         </div>
       </div>
 
-      <!-- TAB CONTENT: UNINSTALLATION -->
-      <div class="tab-content tab-content-unstall">
-        <div class="row-block">
-          <h4>From Dealer</h4>
-          <p>
-            <strong>Tagging:</strong> GT Uninstallation
-            <span class="note"
-              >(In case of error use "Old Product Uninstallation")</span
-            >
-          </p>
-          <p><strong>TAT:</strong> 24 hrs</p>
+      <!-- CARD 4: PMS -->
+      <div class="card">
+        <div class="card-header">
+          <h2>PMS</h2>
         </div>
-        <div class="row-block">
-          <h4>From reliance store</h4>
-          <p><strong>Tagging:</strong> Old Product Uninstallation</p>
-          <p><strong>TAT:</strong> 24 hrs</p>
+        <div class="card-content">
+          <div class="card-row">
+            <h4>Any Platform</h4>
+            <p><strong>Tagging:</strong> Dry AC, Wet AC</p>
+            <p><strong>TAT:</strong> 48 hrs / Appointment date</p>
+          </div>
+          <div class="card-row">
+            <h4>Only if Customer specifies by the term</h4>
+            <p>
+              <strong>Tagging:</strong> Jet AC (if customer agrees for charges)
+            </p>
+            <p><strong>TAT:</strong> 48 hrs / Appointment date</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5: Uninstallation -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Uninstallation</h2>
+        </div>
+        <div class="card-content">
+          <div class="card-row">
+            <h4>From Dealer</h4>
+            <p>
+              <strong>Tagging:</strong> GT Uninstallation
+              <span class="note"
+                >(In case of error use "Old Product Uninstallation")</span
+              >
+            </p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
+          <div class="card-row">
+            <h4>From reliance store</h4>
+            <p><strong>Tagging:</strong> Old Product Uninstallation</p>
+            <p><strong>TAT:</strong> 24 hrs</p>
+          </div>
         </div>
       </div>
     </div>

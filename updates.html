@@ -151,7 +151,7 @@
       /* FLIP CARD - 3D */
       .flip-card {
         width: 100%;
-        height: 380px;
+        height: 380px; /* adjust as needed */
         perspective: 1000px; /* This container sets the 3D perspective */
         animation: fadeInUp 1s ease both;
         position: relative;
@@ -174,8 +174,6 @@
         transform-style: preserve-3d;
         transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
       }
-
-      /* Show back side when flipped */
       .flip-card.flipped .flip-card-inner {
         transform: rotateY(180deg);
       }
@@ -190,7 +188,7 @@
         backface-visibility: hidden;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
           inset 0 0 10px rgba(0, 0, 0, 0.3);
-        border: 1px solid #38bdf8; /* Subtle border highlight */
+        border: 1px solid #38bdf8;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -208,10 +206,8 @@
       .flip-card-back {
         background: linear-gradient(135deg, #2a3c5e 0%, #1e293b 100%);
         transform: rotateY(180deg);
-
-        /* MAKE THE BACK TEXT LARGER & TOP-ALIGNED */
-        align-items: flex-start; /* Start from top */
-        padding: 30px; /* More padding for comfort */
+        /* We'll place both "click here" and "Flip Back" together at bottom */
+        align-items: flex-start;
       }
       .flip-card-front:hover,
       .flip-card-back:hover {
@@ -231,35 +227,38 @@
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       }
 
-      /* ENLARGE TEXT ON THE BACK */
-      .flip-card-back h3 {
-        font-size: 1.7rem;
-        margin-top: 0; /* remove extra top spacing */
-      }
-
-      /* SHORT TEXT */
+      /* CARD TEXT */
       .card-summary,
       .card-details {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: #e5e7eb;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
       }
-      /* Keep front small text as is */
       .card-summary {
         font-size: 1rem;
         text-align: center;
         line-height: 1.5;
         margin-bottom: 10px;
       }
-      /* Make the back bigger */
       .card-details {
-        font-size: 1.15rem; /* bigger text */
-        line-height: 1.6; /* more comfortable spacing */
-        text-align: left; /* left-align for better readability */
+        font-size: 1.15rem;
+        line-height: 1.6;
+        text-align: left;
         margin-bottom: 20px;
       }
 
-      /* CATEGORY LABELS (Inside the FRONT) */
+      /* BACK ACTIONS CONTAINER - to align the buttons horizontally */
+      .back-actions {
+        margin-top: auto; /* push container to bottom of card */
+        width: 100%; /* let it stretch horizontally */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center; /* center horizontally or use space-between if you want them apart */
+        gap: 20px;
+      }
+
+      /* CATEGORY LABEL (Inside FRONT) */
       .category-label {
         position: absolute;
         top: 15px;
@@ -274,7 +273,7 @@
         letter-spacing: 1px;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.4),
           inset 0 0 4px rgba(255, 255, 255, 0.1);
-        z-index: 2; /* Keep the label over the front side */
+        z-index: 2;
       }
       .tat {
         background-color: #ee0d5f;
@@ -301,9 +300,8 @@
         background-color: #4ade80;
       }
 
-      /* LINK BUTTON ON BACK SIDE */
+      /* LINK BUTTON (click here) */
       .flyer-button {
-        margin-top: auto; /* Keep button near bottom if content expands */
         background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
         color: #e5e7eb;
         font-family: "Montserrat", sans-serif;
@@ -314,7 +312,6 @@
         text-decoration: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-        align-self: center; /* center horizontally in the back */
       }
       .flyer-button:hover {
         background: #1d4ed8;
@@ -322,11 +319,8 @@
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
       }
 
-      /* "Flip Me" or "Flip Back" BUTTON */
+      /* FLIP BUTTON */
       .flip-btn {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
         background: #f43f5e;
         color: #fff;
         font-family: "Montserrat", sans-serif;
@@ -337,11 +331,16 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         cursor: pointer;
         transition: transform 0.3s, box-shadow 0.3s;
-        z-index: 2;
       }
       .flip-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+      /* Keep front side "Flip Me" absolute for front only */
+      .flip-card-front .flip-btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
       }
 
       /* RESPONSIVE DESIGN */
@@ -380,9 +379,6 @@
         .flip-card {
           height: 420px;
         }
-        .flip-card-back {
-          padding: 30px;
-        }
       }
       @media (max-width: 480px) {
         .heading {
@@ -395,9 +391,6 @@
         }
         .flip-card {
           height: 460px;
-        }
-        .flip-card-back {
-          padding: 30px;
         }
       }
 
@@ -469,8 +462,8 @@
             <h3>💬 Avoid Filler Words 🚫</h3>
             <div class="card-summary">
               Common filler words ("Um," "Uh," "I mean," "Literally") can weaken
-              communication.
-              <br /><strong>Flip me for tips!</strong>
+              communication.<br />
+              <strong>Flip me for tips!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
@@ -487,14 +480,19 @@
                 possible.
               </p>
             </div>
-            <a
-              href="https://i.postimg.cc/q7BcnHXD/FILLERS.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+
+            <!-- Button Container for Back -->
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/q7BcnHXD/FILLERS.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -502,17 +500,15 @@
       <!-- CARD 2: Product Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label product">product</div>
             <h3>🔥 New Room Heater Product Line Launched! ❄️</h3>
             <div class="card-summary">
-              Explore BPL & WYZR room heaters with in-home service.
-              <br /><strong>Flip for details!</strong>
+              Explore BPL & WYZR room heaters with in-home service.<br />
+              <strong>Flip for details!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Room Heater Launch</h3>
             <div class="card-details">
@@ -524,14 +520,17 @@
                 🏠 <strong>In-home service</strong>; no installation required.
               </p>
             </div>
-            <a
-              href="https://i.postimg.cc/QCYyQ1LR/No-installtion-for-room-heaters.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/QCYyQ1LR/No-installtion-for-room-heaters.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -539,18 +538,16 @@
       <!-- CARD 3: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>📅 Important: Date of Purchase Verification 🔍</h3>
             <div class="card-summary">
               Confirm DoP proactively for both registered & non-registered
-              calls.
-              <br /><strong>Flip for details!</strong>
+              calls.<br />
+              <strong>Flip for details!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Verification Tips</h3>
             <div class="card-details">
@@ -563,14 +560,17 @@
               </p>
               <p>✅ Smooth operations & compliance.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -578,17 +578,15 @@
       <!-- CARD 4: Quality Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label Quality_related">Quality_related</div>
             <h3>🤝 Tips for Better Customer Interaction 🎯</h3>
             <div class="card-summary">
-              Use affirmative statements, paraphrase, build trust.
-              <br /><strong>Flip for tips!</strong>
+              Use affirmative statements, paraphrase, build trust.<br />
+              <strong>Flip for tips!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Interaction Tips</h3>
             <div class="card-details">
@@ -598,14 +596,17 @@
               </p>
               <p>🌟 <strong>TRUST:</strong> Reassure help & resolution.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/1tFwpm2S/STATEMENTS.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/1tFwpm2S/STATEMENTS.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -613,17 +614,15 @@
       <!-- CARD 5: SAP Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label sap">sap</div>
             <h3>🚨 RED ALERT 🚨</h3>
             <div class="card-summary">
-              NOT allowed to CANCEL any service order, request, or complaint.
-              <br /><strong>Flip for policy!</strong>
+              NOT allowed to CANCEL any service order, request, or complaint.<br />
+              <strong>Flip for policy!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Policy Update</h3>
             <div class="card-details">
@@ -633,14 +632,17 @@
               </p>
               <p>⚠️ Protect CRM ID/password.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/hjrLmBSC/cancel-so.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/hjrLmBSC/cancel-so.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -648,17 +650,15 @@
       <!-- CARD 6: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>📞 Essential Probing for PMS Requests 🤔</h3>
             <div class="card-summary">
-              Check if there's a product issue or just general service.
-              <br /><strong>Flip for steps!</strong>
+              Check if there's a product issue or just general service.<br />
+              <strong>Flip for steps!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>PMS Probing</h3>
             <div class="card-details">
@@ -666,14 +666,17 @@
               <p>2️⃣ Dry AC Service or Wet AC Service?</p>
               <p>3️⃣ Preferred service date?</p>
             </div>
-            <a
-              href="https://i.postimg.cc/GmBnRtfd/PMS-probings.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/GmBnRtfd/PMS-probings.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -681,17 +684,16 @@
       <!-- CARD 7: Quality Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label Quality_related">Quality_related</div>
             <h3>🎧 Active Listening: Key to Customer Satisfaction 🤝</h3>
             <div class="card-summary">
-              Acknowledge concerns clearly, confirm details to avoid repetition.
-              <br /><strong>Flip for more!</strong>
+              Acknowledge concerns clearly, confirm details to avoid
+              repetition.<br />
+              <strong>Flip for more!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Active Listening</h3>
             <div class="card-details">
@@ -699,14 +701,17 @@
               <p>❌ Avoid repeated questions.</p>
               <p>🌟 “I understand your concern.”</p>
             </div>
-            <a
-              href="https://i.postimg.cc/k4s5kDVq/ACTIVE-LISTENING.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/k4s5kDVq/ACTIVE-LISTENING.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -714,18 +719,16 @@
       <!-- CARD 8: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>🔍 Verification Process: Address Confirmation</h3>
             <div class="card-summary">
               For non-registered numbers, confirm address carefully to match
-              system records.
-              <br /><strong>Flip for more info!</strong>
+              system records.<br />
+              <strong>Flip for more info!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Verification Steps</h3>
             <div class="card-details">
@@ -733,14 +736,17 @@
               <p>🏠 Must match system records.</p>
               <p>❌ If mismatch, reconfirm to avoid issues.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/k50CS2Jc/verfication.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/k50CS2Jc/verfication.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -748,17 +754,15 @@
       <!-- CARD 9: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>📺 Issue with Remote: Quick Steps 🛠️</h3>
             <div class="card-summary">
-              Ask the customer to check or replace batteries first.
-              <br /><strong>Flip for more steps!</strong>
+              Ask the customer to check or replace batteries first.<br />
+              <strong>Flip for more steps!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Remote Troubleshooting</h3>
             <div class="card-details">
@@ -766,14 +770,17 @@
               <p>2️⃣ Reinsert batteries for proper contact.</p>
               <p>3️⃣ If still not working, register the call.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/nLbcrgNs/Remote-probings.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/nLbcrgNs/Remote-probings.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -781,17 +788,15 @@
       <!-- CARD 10: Product Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label product">product</div>
             <h3>🌬️ BPL Room Heater Fan Request Guidelines 🔧</h3>
             <div class="card-summary">
-              Handle calls for BPL Room Heater Fans (repairs, stock issues).
-              <br /><strong>Flip for guidelines!</strong>
+              Handle calls for BPL Room Heater Fans (repairs, stock issues).<br />
+              <strong>Flip for guidelines!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Fan Request Handling</h3>
             <div class="card-details">
@@ -799,14 +804,17 @@
               <p>🛠️ Raise <strong>SOs</strong> for repairs/stock issues.</p>
               <p>🚫 No installation or demos allowed.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/nLFM82JB/BPL-heater-fan-update.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/nLFM82JB/BPL-heater-fan-update.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -814,18 +822,16 @@
       <!-- CARD 11: SAP Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label sap">sap</div>
             <h3>📝 Account Creation: Importance of Accuracy ✅</h3>
             <div class="card-summary">
               Ensure correct details (name, contact, address) for smooth
-              service.
-              <br /><strong>Flip for an example!</strong>
+              service.<br />
+              <strong>Flip for an example!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Accuracy Matters</h3>
             <div class="card-details">
@@ -833,14 +839,17 @@
               <p>❌ “Request canceled due to incorrect info.”</p>
               <p>🚨 DO NOT RUSH; double-check data.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/FskcxcG5/Untitled-design.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/FskcxcG5/Untitled-design.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -848,17 +857,15 @@
       <!-- CARD 12: Product Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label product">product</div>
             <h3>📺 BPL TV Warranty Extension Promo 🎉</h3>
             <div class="card-summary">
-              1-year additional warranty on select BPL TVs (Oct 1 - Nov 10).
-              <br /><strong>Flip for details!</strong>
+              1-year additional warranty on select BPL TVs (Oct 1 - Nov 10).<br />
+              <strong>Flip for details!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Promo Details</h3>
             <div class="card-details">
@@ -868,14 +875,17 @@
               <p>🗓️ Valid <strong>Oct 1 to Nov 10, 2024</strong>.</p>
               <p>🚫 Excluding Kerala.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/t409zvd3/PHOTO-2024-12-12-15-11-24-3.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/t409zvd3/PHOTO-2024-12-12-15-11-24-3.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -883,18 +893,16 @@
       <!-- CARD 13: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>💰 DOA TR Approved Cases: Refund Process 💰</h3>
             <div class="card-summary">
               If replacements aren't provided under DOA-TR, refunds will be
-              initiated.
-              <br /><strong>Flip for steps!</strong>
+              initiated.<br />
+              <strong>Flip for steps!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Refund Steps</h3>
             <div class="card-details">
@@ -902,14 +910,17 @@
               <p>2️⃣ Request product details via the provided email.</p>
               <p>💡 Keep it smooth & simple.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/Wzs9G7JT/PHOTO-2024-12-12-15-11-23-4.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/Wzs9G7JT/PHOTO-2024-12-12-15-11-23-4.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -917,17 +928,15 @@
       <!-- CARD 14: SAP Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label sap">sap</div>
             <h3>📦 In Process to Send to Vendor 🔄</h3>
             <div class="card-summary">
-              Changing status to "In Process to Send to Vendor"?
-              <br /><strong>Flip to see details!</strong>
+              Changing status to "In Process to Send to Vendor"?<br />
+              <strong>Flip to see details!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Vendor Process</h3>
             <div class="card-details">
@@ -938,14 +947,17 @@
                 🛠️ Under "Reason Code": <em>Send to Vendor Call to Brand</em>
               </p>
             </div>
-            <a
-              href="https://i.postimg.cc/FRjj5CTQ/send-to-vendor.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/FRjj5CTQ/send-to-vendor.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -953,18 +965,16 @@
       <!-- CARD 15: SAP Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label sap">sap</div>
             <h3>🖥️ Request for Cancellation Navigation 🔄</h3>
             <div class="card-summary">
               If SO status is "Request for Cancellation," check the change
-              history tab.
-              <br /><strong>Flip for next steps!</strong>
+              history tab.<br />
+              <strong>Flip for next steps!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Cancellation Check</h3>
             <div class="card-details">
@@ -974,14 +984,17 @@
               </p>
               <p>🛠️ Then proceed based on new status.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/85ms12MN/RFC.png"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/85ms12MN/RFC.png"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -989,18 +1002,16 @@
       <!-- CARD 16: Product Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label product">product</div>
             <h3>🎉 Warranty Extension for 32" WebOS Lite TVs 🎉</h3>
             <div class="card-summary">
               Another festival promo! Additional 1-year warranty on select BPL
-              TVs.
-              <br /><strong>Flip for valid dates!</strong>
+              TVs.<br />
+              <strong>Flip for valid dates!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>WebOS Promo</h3>
             <div class="card-details">
@@ -1011,14 +1022,17 @@
               <p>🗓️ Valid Oct 1 to Nov 10, 2024.</p>
               <p>🚫 Excluding Kerala.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/Y9L4XcYx/WEBOS-tv.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/Y9L4XcYx/WEBOS-tv.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1026,18 +1040,16 @@
       <!-- CARD 17: SAP Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label sap">sap</div>
             <h3>🚛🔧 Product Uninstallation Made Easy!</h3>
             <div class="card-summary">
               Flipkart/Amazon/local dealers => "GT Uninstallation", Reliance =>
-              "Old Product Un-Inst".
-              <br /><strong>Flip for more details!</strong>
+              "Old Product Un-Inst".<br />
+              <strong>Flip for more details!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Uninstallation</h3>
             <div class="card-details">
@@ -1050,14 +1062,17 @@
               </p>
               <p>✨ Keep it simple and smooth.</p>
             </div>
-            <a
-              href="https://i.postimg.cc/rzXYdLCZ/uniinstallation.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/rzXYdLCZ/uniinstallation.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1065,18 +1080,16 @@
       <!-- CARD 18: Probing Related -->
       <div class="flip-card">
         <div class="flip-card-inner">
-          <!-- FRONT -->
           <div class="flip-card-front">
             <div class="category-label probing">probing</div>
             <h3>☎️ Your Toll-Free Help Desk Is Here!</h3>
             <div class="card-summary">
               Quick numbers for BPL Medical, CCTV, Jio Mart, Kelvinator, Disney,
-              LYF & more!
-              <br /><strong>Flip for the full list!</strong>
+              LYF & more!<br />
+              <strong>Flip for the full list!</strong>
             </div>
             <button class="flip-btn">Flip Me</button>
           </div>
-          <!-- BACK -->
           <div class="flip-card-back">
             <h3>Toll-Free Numbers</h3>
             <div class="card-details">
@@ -1086,14 +1099,17 @@
               <p>💡 Kelvinator: 1800-889-1045</p>
               <p>🌟 Disney, LYF, WYZR: More options available!</p>
             </div>
-            <a
-              href="https://i.postimg.cc/tTyrHHN9/toll-free.jpg"
-              class="flyer-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              >click here</a
-            >
-            <button class="flip-btn">Flip Back</button>
+            <div class="back-actions">
+              <a
+                href="https://i.postimg.cc/tTyrHHN9/toll-free.jpg"
+                class="flyer-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>
+              <button class="flip-btn">Flip Back</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1119,18 +1135,13 @@
       categoryFilter.addEventListener("change", () => {
         const selectedCategory = categoryFilter.value;
         flipCards.forEach((card) => {
-          // Look for the label in the FRONT side only
           const labelFront = card.querySelector(
             ".flip-card-front .category-label"
           );
           if (!labelFront) return;
-
-          // extract the category from the label's class
           const matchedCategory = [...labelFront.classList].find(
             (c) => c !== "category-label"
           );
-
-          // Show or hide the card based on filter selection
           if (
             selectedCategory === "all" ||
             matchedCategory === selectedCategory

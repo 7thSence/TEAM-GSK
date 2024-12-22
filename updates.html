@@ -172,15 +172,55 @@
         text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       }
-      .update-card p {
+
+      /* Summary and Details */
+      .card-summary {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 1.1rem;
         color: #e5e7eb;
-        line-height: 1.8;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
         padding: 0 10px;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      }
+      .card-details {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.1rem;
+        color: #e5e7eb;
+        text-align: center;
+        padding: 0 10px;
+        line-height: 1.8;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+        /* Collapsible Animation */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+        margin-bottom: 0; /* We'll handle margin with the toggling */
+      }
+      .card-details.show {
+        margin-bottom: 20px;
+        max-height: 1000px; /* approximate large max-height to reveal content */
+      }
+
+      /* "Show More" Button */
+      .toggle-details-btn {
+        background: #f43f5e;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+      .toggle-details-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
       }
 
       /* Category Labels (Pills) */
@@ -350,409 +390,564 @@
 
     <!-- Grid of Updates -->
     <div class="grid-container">
-      <!-- Example TAT Card (to test TAT filter) -->
-
+      <!-- Card: Quality Related -->
       <div class="update-card">
         <div class="category-label Quality_related">Quality_related</div>
         <h3>💬 Avoid Filler Words 🚫</h3>
-        <p>
-          🤔 Common fillers: "Um," "Uh," "I mean," and "Literally" can weaken
-          communication.
-        </p>
-        <p>
-          ⏸️ <strong>Tip 1:</strong> Accept pauses to think before speaking. 🐢
-          <strong>Tip 2:</strong> Speak slowly to process thoughts. 🛑
-          <strong>Tip 3:</strong> Change habits by consciously avoiding fillers.
-        </p>
-
+        <div class="card-summary">
+          Common filler words like "Um," "Uh," and "I mean" can weaken
+          communication. <br />
+          <strong>Click "Show More" to see tips!</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🤔 Common fillers: "Um," "Uh," "I mean," and "Literally" can weaken
+            communication.
+          </p>
+          <p>
+            ⏸️ <strong>Tip 1:</strong> Accept pauses to think before speaking.
+            <br />
+            🐢 <strong>Tip 2:</strong> Speak slowly to process thoughts. <br />
+            🛑 <strong>Tip 3:</strong> Change habits by consciously avoiding
+            fillers.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/q7BcnHXD/FILLERS.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 1 -->
+      <!-- Card: Product Related -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
         <h3>🔥 New Room Heater Product Line Launched! ❄️</h3>
-        <p>
-          🌟 Explore the latest range of <strong>BPL</strong> and
-          <strong>WYZR</strong> room heaters! 🌬️ Available in Fan, Halogen, and
-          Quartz types with 🔧 <strong>repair warranties</strong> and 🏠
-          <strong>in-home service</strong>. 🚫
-          <strong>No installation required</strong>—click the flyer to see
-          details and article codes!
-        </p>
+        <div class="card-summary">
+          Explore the latest range of <strong>BPL</strong> and
+          <strong>WYZR</strong> room heaters! <br />
+          <strong>Click "Show More" to see details & article codes!</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🌟 Available in Fan, Halogen, and Quartz types with 🔧
+            <strong>repair warranties</strong> and 🏠
+            <strong>in-home service</strong>.
+          </p>
+          <p>
+            🚫 <strong>No installation required</strong>—click the flyer to see
+            full details and article codes!
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/QCYyQ1LR/No-installtion-for-room-heaters.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 2 -->
+      <!-- Card: Probing Related -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
         <h3>📅 Important: Date of Purchase Verification 🔍</h3>
-        <p>
-          🤝 Agents must <strong>proactively confirm</strong> the date of
-          purchase for registered numbers. 🗣️ For non-registered numbers,
-          <strong>verify by asking</strong> the customer. ✅ Follow the updated
-          guidelines to ensure smooth operations and compliance. 🚀 Stay
-          accurate and efficient while assisting customers!
-        </p>
-
+        <div class="card-summary">
+          Confirm the date of purchase for both registered and non-registered
+          numbers. <br />
+          <strong>Click "Show More" for details.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🤝 Agents must <strong>proactively confirm</strong> the date of
+            purchase for registered numbers. 🗣️ For non-registered numbers,
+            <strong>verify by asking</strong> the customer.
+          </p>
+          <p>
+            ✅ Follow the updated guidelines to ensure smooth operations and
+            compliance. 🚀 Stay accurate and efficient while assisting
+            customers!
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/4NHzXq4z/dop-update.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: Quality Related -->
       <div class="update-card">
         <div class="category-label Quality_related">Quality_related</div>
         <h3>🤝 Tips for Better Customer Interaction 🎯</h3>
-        <p>
-          💬 <strong>Use Affirmative Statements:</strong> Say things like “I
-          see” or “I understand” to show you’re actively listening.
-        </p>
-        <p>
-          🔄 <strong>Repeat or Paraphrase:</strong> Reflect their concerns back
-          to them to ensure clarity and understanding.
-        </p>
-        <p>
-          🌟 <strong>Build Trust:</strong> Reassure the customer by letting them
-          know you’re there to help and resolve their concerns.
-        </p>
-
+        <div class="card-summary">
+          Learn how to keep customers engaged and build trust. <br />
+          <strong>Click "Show More" for detailed tips!</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            💬 <strong>Use Affirmative Statements:</strong> “I see” or “I
+            understand” to show active listening.
+          </p>
+          <p>
+            🔄 <strong>Repeat or Paraphrase:</strong> Reflect their concerns to
+            ensure clarity.
+          </p>
+          <p>
+            🌟 <strong>Build Trust:</strong> Reassure the customer you’re there
+            to help resolve their concerns.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/1tFwpm2S/STATEMENTS.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: SAP Related -->
       <div class="update-card">
         <div class="category-label sap">SAP related</div>
         <h3>🚨 RED ALERT 🚨</h3>
-        <p>
-          ❌ <strong>We are NOT allowed to CANCEL</strong> any service order,
-          request, or complaint. ⚠️ This activity falls under our
-          <strong>ZERO TOLERANCE POLICY</strong>.
-        </p>
-        <p>
-          🔒 <strong>Important:</strong> Do NOT share your CRM ID and Password
-          with anyone!
-        </p>
-        <p>
-          🚫 Protect your credentials and adhere to company policies to avoid
-          violations.
-        </p>
-
+        <div class="card-summary">
+          We are NOT allowed to CANCEL any service order, request, or complaint.
+          <br />
+          <strong>Click "Show More" for details.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            ❌ <strong>We are NOT allowed to CANCEL</strong> any SO, request, or
+            complaint. ⚠️ This activity falls under our
+            <strong>ZERO TOLERANCE POLICY</strong>.
+          </p>
+          <p>
+            🔒 <strong>Important:</strong> Do NOT share your CRM ID and Password
+            with anyone!
+          </p>
+          <p>
+            🚫 Protect your credentials and adhere to company policies to avoid
+            violations.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/hjrLmBSC/cancel-so.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: Probing Related -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
         <h3>📞 Essential Probing for PMS Requests 🤔</h3>
-        <p>
-          1️⃣ <strong>Ask:</strong> "Are you facing an issue with the product or
-          need general service?"
-        </p>
-        <p>
-          2️⃣ <strong>Clarify:</strong> "Do you prefer Dry AC Service or Wet AC
-          Service?"
-        </p>
-        <p>
-          3️⃣ <strong>Confirm:</strong> "May I know the preferred date for the
-          service?"
-        </p>
-
+        <div class="card-summary">
+          Are you facing an issue or need general service? <br />
+          <strong>Click "Show More" for the full question set.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            1️⃣ <strong>Ask:</strong> "Are you facing an issue with the product
+            or need general service?"
+          </p>
+          <p>
+            2️⃣ <strong>Clarify:</strong> "Do you prefer Dry AC Service or Wet AC
+            Service?"
+          </p>
+          <p>
+            3️⃣ <strong>Confirm:</strong> "May I know the preferred date for the
+            service?"
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/GmBnRtfd/PMS-probings.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: Quality Related -->
       <div class="update-card">
         <div class="category-label Quality_related">Quality_related</div>
         <h3>🎧 Active Listening: Key to Customer Satisfaction 🤝</h3>
-        <p>
-          ✅ <strong>Do:</strong> Acknowledge the customer's concern clearly and
-          confirm details like their registered number.
-        </p>
-        <p>
-          ❌ <strong>Don't:</strong> Ask them to repeat information
-          unnecessarily. This can frustrate the customer.
-        </p>
-        <p>
-          🌟 <strong>Tip:</strong> Use phrases like “I understand your concern”
-          to show empathy and build trust.
-        </p>
-
+        <div class="card-summary">
+          Show empathy and confirm details to avoid repeated questions. <br />
+          <strong>Click "Show More" to learn how.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            ✅ <strong>Do:</strong> Acknowledge the customer's concern clearly
+            and confirm details like their registered number.
+          </p>
+          <p>
+            ❌ <strong>Don't:</strong> Ask them to repeat information
+            unnecessarily. This can frustrate the customer.
+          </p>
+          <p>
+            🌟 <strong>Tip:</strong> Use phrases like “I understand your
+            concern” to show empathy and build trust.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/k4s5kDVq/ACTIVE-LISTENING.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: Probing Related -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
         <h3>🔍 Verification Process: Address Confirmation</h3>
-        <p>
-          📞 <strong>Calling from a non-registered number?</strong> Whether
-          you're a dealer or a customer, ensuring accurate details is key!
-        </p>
-        <p>
-          🏠 <strong>Verify:</strong> Address details must match the system
-          records.
-        </p>
-        <p>
-          ❌ <strong>Mismatch?</strong> Confirm the address again to ensure
-          smooth resolution of complaints.
-        </p>
-
+        <div class="card-summary">
+          Non-registered number? Dealer or customer? Confirm address details
+          carefully. <br />
+          <strong>Click "Show More" for details.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            📞 <strong>Calling from a non-registered number?</strong> Whether
+            you're a dealer or a customer, ensuring accurate details is key!
+          </p>
+          <p>
+            🏠 <strong>Verify:</strong> Address details must match the system
+            records.
+          </p>
+          <p>
+            ❌ <strong>Mismatch?</strong> Confirm the address again to ensure
+            smooth resolution of complaints.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/k50CS2Jc/verfication.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Card: Probing Related -->
+      <div class="update-card">
+        <div class="category-label probing">Probing Related</div>
+        <h3>📺 Issue with Remote: Quick Steps 🛠️</h3>
+        <div class="card-summary">
+          Ask customer to check or replace batteries first. <br />
+          <strong>Click "Show More" for all steps.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            1️⃣ <strong>Check Batteries:</strong> Replace old batteries with new
+            ones and test the remote.
+          </p>
+          <p>
+            2️⃣ <strong>Reinsert Batteries:</strong> Remove and reinsert
+            batteries to ensure proper contact.
+          </p>
+          <p>
+            3️⃣ <strong>Still Not Working?</strong> If the issue persists,
+            register the call and log the details.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
+        <a
+          href="https://i.postimg.cc/nLbcrgNs/Remote-probings.jpg"
+          class="flyer-button"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Click here</a
+        >
+      </div>
+
+      <!-- Card: Product Related -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
         <h3>🌬️ BPL Room Heater Fan Request Guidelines 🔧</h3>
-        <p>
-          📞 Learn how to handle customer and dealer calls for BPL Room Heater
-          Fans. 🛠️ Raise <strong>SOs</strong> for repairs and stock issues. 🚫
-          <strong>Note:</strong> Requests for installation or demos are not
-          allowed. 🔍 Keep things efficient and follow the guidelines for
-          seamless support!
-        </p>
-
+        <div class="card-summary">
+          Handle requests for repairs and stock issues for BPL Room Heater Fans.
+          <br />
+          <strong>Click "Show More" for guidelines!</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            📞 Learn how to handle customer and dealer calls for BPL Room Heater
+            Fans. 🛠️ Raise <strong>SOs</strong> for repairs and stock issues.
+          </p>
+          <p>
+            🚫 <strong>Note:</strong> Requests for installation or demos are not
+            allowed. 🔍 Keep things efficient and follow the guidelines for
+            seamless support!
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/nLFM82JB/BPL-heater-fan-update.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: SAP Related -->
       <div class="update-card">
         <div class="category-label sap">SAP related</div>
         <h3>📝 Account Creation: Importance of Accuracy ✅</h3>
-        <p>
-          😊 <strong>Expectation:</strong> - Ensure accurate details like name,
-          contact, and address for smooth service. ❌
-          <strong>Bad Experience:</strong>
-          Example: "I apologize, Mr. Mohit, your request was canceled due to
-          incorrect details."
-        </p>
-        <p>
-          🚨 <strong>Reminder:</strong>
-          - 🛑 DO NOT RUSH. - Attention to detail ensures happy customers and
-          seamless service!
-        </p>
-
+        <div class="card-summary">
+          Ensure accurate details like name, contact, and address for smooth
+          service. <br />
+          <strong>Click "Show More" for an example!</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            😊 <strong>Expectation:</strong> Ensure correct name, contact, and
+            address for smooth service. ❌ <strong>Bad Experience:</strong> “I
+            apologize, Mr. Mohit, your request was canceled due to incorrect
+            details.”
+          </p>
+          <p>
+            🚨 <strong>Reminder:</strong> - 🛑 DO NOT RUSH. <br />
+            - Attention to detail ensures happy customers and seamless service!
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/FskcxcG5/Untitled-design.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 4 -->
+      <!-- Card: Product Related -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
         <h3>📺 BPL TV Warranty Extension Promo 🎉</h3>
-        <p>
-          🛠️ Check out the festival promo offering an additional
-          <strong>1-year warranty</strong> on select BPL TVs! 🗓️
-          <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
-          <strong>Where:</strong> Across India (🚫 Excluding Kerala).
-        </p>
-
+        <div class="card-summary">
+          1-year additional warranty on select BPL TVs! <br />
+          <strong>Click "Show More" for dates & location.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🛠️ Festival promo offering an additional
+            <strong>1-year warranty</strong> on select BPL TVs!
+          </p>
+          <p>
+            🗓️ <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
+            <strong>Where:</strong> Across India (🚫 Excluding Kerala).
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/t409zvd3/PHOTO-2024-12-12-15-11-24-3.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 5 -->
+      <!-- Card: Probing Related -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
         <h3>💰 DOA TR Approved Cases: Refund Process 💰</h3>
-        <p>
-          🔄 For cases where replacements are not provided under DOA-TR
-          approvals, refunds will be initiated. 📜 <strong>Steps:</strong> 1️⃣
-          Provide the <strong>TR number</strong> to the customer. 2️⃣ Request
-          customers to share product details via the provided 📧
-          <strong>email</strong> for processing. 💡 Keep things smooth and
-          simple for quick resolutions!
-        </p>
+        <div class="card-summary">
+          For replacements not provided under DOA-TR approvals, refunds will be
+          initiated. <br />
+          <strong>Click "Show More" for the steps.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🔄 For cases where replacements are not provided under DOA-TR
+            approvals, refunds will be initiated.
+          </p>
+          <p>
+            📜 <strong>Steps:</strong> <br />
+            1️⃣ Provide the <strong>TR number</strong> to the customer. <br />
+            2️⃣ Request customers to share product details via the provided 📧
+            <strong>email</strong> for processing.
+          </p>
+          <p>💡 Keep things smooth and simple for quick resolutions!</p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/Wzs9G7JT/PHOTO-2024-12-12-15-11-23-4.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: SAP Related -->
       <div class="update-card">
         <div class="category-label sap">SAP related</div>
         <h3>📦 In Process to Send to Vendor 🔄</h3>
-        <p>
-          🤔 <strong>What you need to mention:</strong> If you are changing the
-          status to <strong>"In Process to Send to Vendor"</strong>, ensure the
-          following:
-        </p>
-        <ul>
-          <li>
-            📋 <strong>Under Brand Complaint No.:</strong>
-            <em>Brand Complaint Awaited</em>
-          </li>
-          <li>
-            🛠️ <strong>Under Reason Code:</strong>
-            <em>Send to Vendor Call to Brand</em>
-          </li>
-        </ul>
-
+        <div class="card-summary">
+          Changing SO status to "In Process to Send to Vendor"? Follow these
+          steps. <br />
+          <strong>Click "Show More" to learn more.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🤔 <strong>What you need to mention:</strong> If you are changing
+            the status to <strong>"In Process to Send to Vendor"</strong>,
+            ensure the following:
+          </p>
+          <ul style="text-align: left">
+            <li>
+              📋 <strong>Under Brand Complaint No.:</strong>
+              <em>Brand Complaint Awaited</em>
+            </li>
+            <li>
+              🛠️ <strong>Under Reason Code:</strong>
+              <em>Send to Vendor Call to Brand</em>
+            </li>
+          </ul>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/FRjj5CTQ/send-to-vendor.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
+      <!-- Card: SAP Related -->
       <div class="update-card">
         <div class="category-label sap">SAP related</div>
         <h3>🖥️ Request for Cancellation Navigation 🔄</h3>
-        <p>
-          ✅ Check the SO status in the system. If it shows
-          <strong>"Request for Cancellation"</strong>, refer to the change
-          history tab for updates like <em>"Assigned/WIP"</em>.
-        </p>
-        <p>
-          🛠️ Take action based on the updated status (e.g.,
-          <em>"Assigned/WIP"</em>) and proceed accordingly.
-        </p>
-
+        <div class="card-summary">
+          If SO status shows "Request for Cancellation," check change history
+          tab. <br />
+          <strong>Click "Show More" for next steps.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            ✅ Check the SO status in the system. If it shows
+            <strong>"Request for Cancellation"</strong>, refer to the change
+            history tab for updates like <em>"Assigned/WIP"</em>.
+          </p>
+          <p>
+            🛠️ Take action based on the updated status (e.g.,
+            <em>"Assigned/WIP"</em>) and proceed accordingly.
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/85ms12MN/RFC.png"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 6 -->
+      <!-- Card: Product Related -->
       <div class="update-card">
         <div class="category-label product">Product Related</div>
         <h3>🎉 Warranty Extension for 32" WebOS Lite TVs 🎉</h3>
-        <p>
-          🛠️ Check out the festival promo offering an additional
-          <strong>1-year warranty</strong> on select BPL TVs! 🗓️
-          <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
-          <strong>Where:</strong> Across India (🚫 Excluding Kerala).
-        </p>
+        <div class="card-summary">
+          Another festival promo! Additional 1-year warranty on select BPL TVs.
+          <br />
+          <strong>Click "Show More" for dates.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🛠️ Check out the festival promo offering an additional
+            <strong>1-year warranty</strong> on select BPL TVs!
+          </p>
+          <p>
+            🗓️ <strong>Valid Dates:</strong> October 1 to November 10, 2024. 🌏
+            <strong>Where:</strong> Across India (🚫 Excluding Kerala).
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/Y9L4XcYx/WEBOS-tv.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 7 -->
+      <!-- Card: SAP Related -->
       <div class="update-card">
         <div class="category-label sap">SAP related</div>
         <h3>🚛🔧 Product Uninstallation Made Easy!</h3>
-        <p>
-          🛒 Bought from Flipkart, Amazon, or local dealers? ➡️ Select "GT
-          Uninstallation". 🏬 Purchased via Reliance Digital/JioMart? ➡️ Choose
-          "Old Product Un-Inst". Let’s keep it simple and smooth! 😎✨ Click to
-          learn the steps.
-        </p>
+        <div class="card-summary">
+          Bought from Flipkart, Amazon, or local dealers? Or Reliance Digital?
+          <br />
+          <strong>Click "Show More" to know the correct selection.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🛒 Bought from Flipkart, Amazon, or local dealers? ➡️ Select "GT
+            Uninstallation". 🏬 Purchased via Reliance Digital/JioMart? ➡️
+            Choose "Old Product Un-Inst".
+          </p>
+          <p>Let’s keep it simple and smooth! 😎✨ Click to learn the steps.</p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/rzXYdLCZ/uniinstallation.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
 
-      <!-- Card 8 -->
+      <!-- Card: Probing Related -->
       <div class="update-card">
         <div class="category-label probing">Probing Related</div>
         <h3>☎️ Your Toll-Free Help Desk Is Here!</h3>
-        <p>
-          🩺 BPL Medical Equipment: 1800-425-2355<br />
-          📹 BPL CCTV: 1800-180-2087<br />
-          🏬 Jio Mart: 1800-890-1222<br />
-          💡 Kelvinator: 1800-889-1045<br />
-          🌟 Disney, LYF, WYZR: Multiple options available!<br />
-          Click to explore the full list! 🎉
-        </p>
+        <div class="card-summary">
+          Quick numbers for BPL Medical, CCTV, Jio Mart, Kelvinator, Disney, LYF
+          & more! <br />
+          <strong>Click "Show More" for the full list.</strong>
+        </div>
+        <div class="card-details hidden">
+          <p>
+            🩺 BPL Medical Equipment: 1800-425-2355<br />
+            📹 BPL CCTV: 1800-180-2087<br />
+            🏬 Jio Mart: 1800-890-1222<br />
+            💡 Kelvinator: 1800-889-1045<br />
+            🌟 Disney, LYF, WYZR: Multiple options available!<br />
+            Click to explore the full list! 🎉
+          </p>
+        </div>
+        <button class="toggle-details-btn">Show More</button>
         <a
           href="https://i.postimg.cc/tTyrHHN9/toll-free.jpg"
           class="flyer-button"
           target="_blank"
           rel="noopener noreferrer"
+          >Click here</a
         >
-          Click here
-        </a>
       </div>
     </div>
     <!-- End of Grid -->
@@ -775,12 +970,11 @@
 
       categoryFilter.addEventListener("change", () => {
         const selectedCategory = categoryFilter.value;
-
         updateCards.forEach((card) => {
-          // Extract the actual category (e.g. "tat", "probing", "product", etc.)
-          const cardClasses = card.querySelector(".category-label").classList;
-          // We know the first class is "category-label", so the second is the category
-          // OR we find it by excluding "category-label" if order is uncertain:
+          // The category is in the second class of .category-label
+          const labelElement = card.querySelector(".category-label");
+          if (!labelElement) return;
+          const cardClasses = labelElement.classList;
           let matchedCategory = [...cardClasses].find(
             (c) => c !== "category-label"
           );
@@ -792,6 +986,23 @@
             card.style.display = "block"; // show
           } else {
             card.style.display = "none"; // hide
+          }
+        });
+      });
+
+      // Show More / Show Less functionality
+      const toggleButtons = document.querySelectorAll(".toggle-details-btn");
+      toggleButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".update-card");
+          const details = card.querySelector(".card-details");
+
+          if (details.classList.contains("show")) {
+            details.classList.remove("show");
+            btn.textContent = "Show More";
+          } else {
+            details.classList.add("show");
+            btn.textContent = "Show Less";
           }
         });
       });

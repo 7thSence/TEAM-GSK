@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms and Links</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* RESET & GLOBAL */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", "Inter", sans-serif;
+        background-color: #0f172a; /* Deep Navy Blue */
+        color: #e5e7eb; /* Light Gray */
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: #38bdf8; /* Default link color */
+      }
+
+      /* NAVBAR */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b; /* Dark Blue-Black */
+        padding: 15px 20px;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #38bdf8;
+        text-transform: uppercase;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        transition: all 0.3s ease;
+      }
+      .nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        font-weight: bold;
+        background: #2563eb; /* Blue */
+        color: #e5e7eb;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      }
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* HAMBURGER ICON (hidden on larger screens) */
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none; /* Hide nav links by default on mobile */
+          flex-direction: column;
+          gap: 10px;
+        }
+        .nav-links.active {
+          display: flex; /* Show when toggled */
+        }
+        .menu-icon {
+          display: block; /* Show hamburger on mobile */
+        }
+      }
+
+      /* HEADING */
+      .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        background: linear-gradient(90deg, #1e293b, #2563eb);
+        color: #e5e7eb;
+        font-size: 2.5rem;
+        margin: 20px auto;
+        max-width: 95%;
+        font-weight: bold;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+      }
+      @media (max-width: 600px) {
+        .heading {
+          font-size: 1.8rem;
+          padding: 20px;
+        }
+      }
+
+      /* ACCORDION CONTAINER */
+      .accordion-container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 40px auto;
+      }
+
+      /* ACCORDION ITEM */
+      .accordion-item {
+        background: #1e293b;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+      /* ACCORDION HEADER */
+      .accordion-header {
+        cursor: pointer;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #22304a; /* Slightly lighter background */
+        transition: background 0.3s ease;
+      }
+      .accordion-header:hover {
+        background-color: #2c3a52;
+      }
+      .accordion-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      /* ARROW */
+      .accordion-arrow {
+        font-size: 1.3rem;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease;
+      }
+      .rotate {
+        transform: rotate(90deg);
+      }
+
+      /* ACCORDION CONTENT */
+      .accordion-content {
+        max-height: 0; /* Hidden by default */
+        overflow: hidden;
+        background: #1e293b; /* Dark background */
+        transition: max-height 0.4s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .accordion-content p {
+        padding: 15px 20px;
+        line-height: 1.5;
+      }
+
+      /* BUTTON INSIDE ACCORDION CONTENT */
+      .accordion-btn {
+        margin: 10px 20px 15px auto; /* space around, right alignment by default */
+        align-self: flex-start;
+        background: #2563eb;
+        color: #e5e7eb;
+        font-weight: 600;
+        text-align: center;
+        padding: 10px 18px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background 0.3s, transform 0.3s;
+        width: fit-content;
+      }
+      .accordion-btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b;
+        font-size: 0.9rem;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        margin-top: 40px;
+      }
+
+      /* SMALLER DEVICES */
+      @media (max-width: 480px) {
+        .accordion-header {
+          padding: 15px;
+        }
+        .accordion-title {
+          font-size: 1rem;
+        }
+        .accordion-arrow {
+          font-size: 1.1rem;
+        }
+        .accordion-content p {
+          padding: 12px 15px;
+        }
+        .accordion-btn {
+          margin: 10px 15px;
+          padding: 8px 14px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button"
+              >7 Series Handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
+          <li>
+            <a href="pms-creation.html" class="nav-button">PMS Creation</a>
+          </li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="updates.html" class="nav-button">Updates</a></li>
+          <li><a href="forms.html" class="nav-button">Forms</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HEADING -->
+    <div class="heading">Forms and Links</div>
+
+    <!-- ACCORDION CONTAINER -->
+    <div class="accordion-container">
+      <!-- ITEM 1: Issue Tracker -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">🛠️ Issue Tracker</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> If a customer call gets disconnected
+            without providing a resolution, attempt to call them back two times.
+            If the call doesn’t reconnect, fill out this form within 15 minutes
+            after the call (and after creating a General Interaction).
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/issue-tracker"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 2: Pre Shift January -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">⏰ Pre Shift January</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> Before every shift, join the preshift
+            meet 30 minutes early. After the briefing, fill out this link to
+            mark your attendance.<br /><br />
+            <em>✨Note:</em> 10% PLI for 100% attendance in the month. Missing
+            even one day is not affordable!
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/pre-shift"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 3: Language Barrier -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">🌐 Language Barrier</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> If you are unable to continue the
+            call in the customer's preferred language, fill out this form and
+            let them know they will receive a callback in the requested language
+            within 2 hours.
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/language-barrier"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 4: Senior Call -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">🎩 Senior Call</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> If the customer requests a senior
+            callback, first attempt to de-escalate. If they still insist, fill
+            out this form and inform them a senior will call back within 2
+            hours.
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/senior-call"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 5: Request for Cancellation -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">❌ Request for Cancellation</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> If you see a Sales Order (SO) with a
+            status of "Request for Cancellation", inform the customer to wait as
+            the complaint is not closed. Then fill out this form immediately
+            after the call.
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/cancellation"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 6: Citrix Password Reset Link -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">🔒 Citrix Password Reset</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to use:</strong> If your Citrix password has expired or
+            needs resetting, please use this link:
+          </p>
+          <!-- OPEN LINK BUTTON -->
+          <a
+            href="https://example.com/citrix-reset"
+            target="_blank"
+            class="accordion-btn"
+            >Open Link</a
+          >
+        </div>
+      </div>
+
+      <!-- ITEM 7: WO Preference -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">📅 WO Preference</div>
+          <span class="accordion-arrow">&#9654;</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            <strong>When to fill:</strong> Every Thursday by 6 PM, fill out this
+            form to set your preferred day off (WO) for the following week.
+          </p>
+          <!-- OPEN FORM BUTTON -->
+          <a
+            href="https://example.com/wo-preference"
+            target="_blank"
+            class="accordion-btn"
+            >Open Form</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Made with ❤️ for the team by GSK</p>
+    </footer>
+
+    <script>
+      // MOBILE MENU TOGGLE
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+      }
+
+      // ACCORDION TOGGLE
+      function toggleAccordion(headerElement) {
+        // 1. Grab the accordion-content element
+        const content = headerElement.nextElementSibling;
+        // 2. Toggle the 'max-height'
+        if (content.style.maxHeight) {
+          // Content is open, close it
+          content.style.maxHeight = null;
+          headerElement
+            .querySelector(".accordion-arrow")
+            .classList.remove("rotate");
+        } else {
+          // Close all other accordions for a single-open effect (optional)
+          document.querySelectorAll(".accordion-content").forEach((panel) => {
+            panel.style.maxHeight = null;
+            panel.previousElementSibling
+              .querySelector(".accordion-arrow")
+              .classList.remove("rotate");
+          });
+
+          // Expand the chosen one
+          content.style.maxHeight = content.scrollHeight + "px";
+          headerElement
+            .querySelector(".accordion-arrow")
+            .classList.add("rotate");
+        }
+      }
+    </script>
+  </body>
+</html>

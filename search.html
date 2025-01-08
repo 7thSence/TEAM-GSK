@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PBGuide - Advanced Search</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* RESET & GLOBAL */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", "Inter", sans-serif;
+        background: linear-gradient(to bottom right, #0f172a 30%, #1e293b);
+        color: #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      a {
+        text-decoration: none; /* Remove underline */
+        color: inherit;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e293b;
+        padding: 15px 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #38bdf8;
+        text-transform: uppercase;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+      }
+      .nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        font-weight: bold;
+        background: #2563eb;
+        color: #e5e7eb;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      }
+      .nav-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* HAMBURGER MENU ICON (Mobile) */
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        color: #e5e7eb;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .menu-icon {
+          display: block;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+      }
+
+      /* MAIN CONTAINER */
+      .main-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+      .pbguide-logo {
+        font-size: 2.3rem;
+        font-weight: bold;
+        color: #38bdf8;
+        letter-spacing: 2px;
+        margin: 20px 0 10px 0;
+      }
+
+      /* SEARCH BOX */
+      .search-box-container {
+        position: relative;
+        width: 100%;
+        max-width: 700px;
+        margin-bottom: 40px;
+      }
+      .search-box {
+        width: 100%;
+        padding: 18px;
+        font-size: 1.3rem;
+        border: 2px solid #2563eb;
+        border-radius: 50px;
+        background: #1e293b;
+        color: #e5e7eb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+      .search-box:focus {
+        border-color: #38bdf8;
+      }
+
+      /* QUOTE */
+      .quote {
+        margin: 30px 0;
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-style: italic;
+        color: #e2e8f0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        max-width: 90%;
+        line-height: 1.4;
+      }
+      .quote.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      /* RESULTS CONTAINER */
+      .results-container {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #1e293b;
+        border: 2px solid #2563eb;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        display: none;
+        max-height: 320px; /* limit height for scroll */
+        overflow-y: auto;
+      }
+      .result-item {
+        padding: 15px;
+        border-bottom: 1px solid #22304a;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .result-item:hover {
+        background-color: #2563eb;
+      }
+      .result-item:last-child {
+        border-bottom: none;
+      }
+      .result-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #38bdf8;
+      }
+      .result-code {
+        font-size: 0.95rem;
+        color: #e5e7eb;
+      }
+
+      /* CUSTOM SCROLLBAR */
+      .results-container::-webkit-scrollbar {
+        width: 8px;
+      }
+      .results-container::-webkit-scrollbar-track {
+        background: #22304a;
+      }
+      .results-container::-webkit-scrollbar-thumb {
+        background: #2563eb;
+        border-radius: 5px;
+      }
+      .results-container::-webkit-scrollbar-thumb:hover {
+        background: #1d4ed8;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1e293b;
+        font-size: 0.9rem;
+        color: #e5e7eb;
+      }
+
+      /* RESPONSIVE TWEAKS */
+      @media (max-width: 480px) {
+        .pbguide-logo {
+          font-size: 1.8rem;
+        }
+        .search-box {
+          font-size: 1.1rem;
+          padding: 15px;
+        }
+        .quote {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Team GSK</div>
+        <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-button">Home</a></li>
+          <li>
+            <a href="7_series_handling.html" class="nav-button"
+              >7 Series Handling</a
+            >
+          </li>
+          <li>
+            <a href="7_series_creation.html" class="nav-button"
+              >7 Series Creation</a
+            >
+          </li>
+          <li>
+            <a href="pms-creation.html" class="nav-button">PMS Creation</a>
+          </li>
+          <li><a href="tat.html" class="nav-button">TAT</a></li>
+          <li><a href="updates.html" class="nav-button">Updates</a></li>
+          <li><a href="forms.html" class="nav-button">Forms</a></li>
+          <li><a href="search.html" class="nav-button">PBGuide</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+      <div class="pbguide-logo">PBGuide</div>
+
+      <!-- Search Box -->
+      <div class="search-box-container">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-box"
+          placeholder="Search models or article codes..."
+          autocomplete="off"
+        />
+        <!-- Results -->
+        <div id="resultsContainer" class="results-container"></div>
+      </div>
+
+      <!-- Quote (Change daily as you wish) -->
+      <div id="quote" class="quote">"Nothing is impossible"</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>© 2025 Team GSK</footer>
+
+    <script>
+      // Toggle menu (mobile)
+      function toggleMenu() {
+        document.querySelector(".nav-links").classList.toggle("active");
+      }
+
+      // ------------------------------------------------------------------------
+      // SAMPLE DATA (Imagine 3,000 items)
+      // Precompute a normalized version of each model to improve performance
+      // ------------------------------------------------------------------------
+      const productData = [
+        {
+          model: "BPL 43 FHD ANDROID SMART TV 43F-A4300",
+          articleCode: "491893307",
+        },
+        {
+          model: "BPL 32 HD ANDROID SMART TV 32H-B4300",
+          articleCode: "492166355",
+        },
+        { model: "BPL 32H-D4300 LED TV", articleCode: "492166400" },
+        {
+          model: "BPL Ceiling Fan Basic 1200mm-BFCB-1200IV",
+          articleCode: "491902860",
+        },
+        {
+          model: "BPL 7W SENSOR LED BULB BB07SN0B-CDL",
+          articleCode: "491902827",
+        },
+        {
+          model: "BPL 32 HD GOOGLE ONKYO TV 32H-E5340 (INX OC)",
+          articleCode: "494410394",
+        },
+        {
+          model: "BPL 43 FHD ANDROID SMART TV 43F-A4300",
+          articleCode: "491893307",
+        },
+        {
+          model: "BPL 50 UHD ANDROID SMART TV 50U-A4310",
+          articleCode: "491893308",
+        },
+        { model: "BPL 43 FHD LED TV 43F-A1000", articleCode: "491895045" },
+        {
+          model: "BPL 43 FHD ANDROID SMART TV 43F-B4300",
+          articleCode: "492166356",
+        },
+        {
+          model: "BPL 50 UHD ANDROID SMART TV 50U-B4310",
+          articleCode: "492166357",
+        },
+        {
+          model: "BPL 55 UHD ANDROID SMART TV 55U-B4310",
+          articleCode: "492166358",
+        },
+        {
+          model: "BPL 43 FHD ANDROID SMART TV 43F-B4000",
+          articleCode: "492338720",
+        },
+        {
+          model: "BPL 50 UHD ANDROID SMART TV 50U-B4000",
+          articleCode: "492338721",
+        },
+        {
+          model: "BPL 50 UHD ANDROID SMART TV 50U-A4311",
+          articleCode: "492403673",
+        },
+        {
+          model: "BPL 50 UHD ANDROID SMART TV 50U B4001",
+          articleCode: "492403970",
+        },
+        {
+          model: "BPL 32 HD ANDROID SMART TV 32H-A4300",
+          articleCode: "491893306",
+        },
+        { model: "BPL 32 HD LED TV 32H-A1000", articleCode: "491895044" },
+        {
+          model: "BPL 32 HD ANDROID SMART TV 32H-A4301",
+          articleCode: "492166140",
+        },
+        {
+          model: "BPL 32 HD ANDROID SMART TV 32H-B4300",
+          articleCode: "492166355",
+        },
+        {
+          model: "BPL 32 HD ANDROID SMART TV 32H-B4000",
+          articleCode: "492338719",
+        },
+        { model: "BPL 24 HD LED TV 24H-A1000", articleCode: "491895043" },
+        {
+          model: "BPL 55 UHD ANDROID SMART TV 55U-A4310",
+          articleCode: "491893309",
+        },
+        {
+          model: "BPL 65 UHD ANDROID SMART TV 65U-A4310",
+          articleCode: "491893310",
+        },
+        {
+          model: "BPL 75 UHD ANDROID SMART TV 75U-A4010",
+          articleCode: "491893311",
+        },
+        {
+          model: "BPL 65 UHD ANDROID SMART TV 65U-B4310",
+          articleCode: "492166359",
+        },
+        {
+          model: "BPL 70 UHD ANDROID SMART TV 70U-B4310",
+          articleCode: "492166360",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 1200mm-BFCB-1200IV",
+          articleCode: "491902860",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 1200mm-BFCB-1201BR",
+          articleCode: "491902861",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 1200mm-BFCB-1202WH",
+          articleCode: "491902862",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 0600mm-BFCB-0600WH",
+          articleCode: "491902863",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 060mm-BFCB-0601IV",
+          articleCode: "491902864",
+        },
+        {
+          model: "BPL Ceiling Fan Basic 0600mm-BFCB-0602BR",
+          articleCode: "491902865",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1211BL",
+          articleCode: "492284040",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1212BL",
+          articleCode: "492284041",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1213WH",
+          articleCode: "492284042",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1214BL",
+          articleCode: "492284043",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1215BL",
+          articleCode: "492284044",
+        },
+        {
+          model: "BPL Ceiling Fan Deco 1200mm-BFCD-1216WH",
+          articleCode: "492284045",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1203WH",
+          articleCode: "491902866",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1204BR",
+          articleCode: "491902867",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1205IV",
+          articleCode: "491902868",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1206BR",
+          articleCode: "491902869",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1207WH",
+          articleCode: "491902870",
+        },
+        {
+          model: "BPL Ceiling Fan HS 1200mm-BFCB-1208IV",
+          articleCode: "491902871",
+        },
+        {
+          model: "BPL Pedestal Fan 400 MM-BFPB-0400WH",
+          articleCode: "491959015",
+        },
+        { model: "BPL Table Fan 400 MM-BFTB-0400WH", articleCode: "491903263" },
+        { model: "BPL Wall Fan 400 MM-BFWB-0400WH", articleCode: "491959016" },
+        {
+          model: "BPL Exhaust Fan Basic 200 mm-BFEB-0201WH",
+          articleCode: "491902858",
+        },
+        {
+          model: "BPL Exhaust Fan Basic 250mm-BFEB-0301WH",
+          articleCode: "491902859",
+        },
+        {
+          model: "BPL 7W REGULAR LED BULB BB07RG0A-CDL",
+          articleCode: "491902790",
+        },
+        {
+          model: "BPL 9W LED BULB BB09RG0A-CDL 6500K",
+          articleCode: "491902791",
+        },
+        {
+          model: "BPL 12W REGULAR LED BULB BB12RG0A-CDL",
+          articleCode: "491902792",
+        },
+        {
+          model: "BPL 18W REGULAR LED BULB BB18RG0A-CDL",
+          articleCode: "491902793",
+        },
+        {
+          model: "BPL 0.5W WHITE DECO BULB BD01RG0A-W",
+          articleCode: "491902798",
+        },
+        {
+          model: "BPL 0.5W YELLOW DECO BULB BD01RG0A-Y",
+          articleCode: "491902799",
+        },
+        {
+          model: "BPL 0.5W RED DECO BULB BD01RG0A-R",
+          articleCode: "491902800",
+        },
+        {
+          model: "BPL 0.5W GREEN DECO BULB BD01RG0A-G",
+          articleCode: "491902801",
+        },
+        {
+          model: "BPL 10W LED REGULAR T-BULB BT10RG0B-CDL",
+          articleCode: "491902824",
+        },
+        {
+          model: "BPL 18W LED REGULAR T-BULB BT18RG0B-CDL",
+          articleCode: "491902825",
+        },
+        {
+          model: "BPL 26W LED REGULAR T-BULB BT26RG0B-CDL",
+          articleCode: "491902826",
+        },
+        {
+          model: "BPL 25W REGULAR T-BULB BT25RG0B-CDL",
+          articleCode: "492284205",
+        },
+        {
+          model: "BPL 9W Smart LED Bulb BB09SM0A-5C",
+          articleCode: "492573344",
+        },
+        {
+          model: "BPL 30W REGULAR BULB BH30RG0B-CDL",
+          articleCode: "492664296",
+        },
+        {
+          model: "BPL 40W REGULAR BULB BH40RG0B-CDL",
+          articleCode: "492664297",
+        },
+        {
+          model: "BPL 50W REGULAR BULB BH50RG0B-CDL",
+          articleCode: "492664298",
+        },
+        {
+          model: "BPL 9W EMERGENCY LED BULB BB09EM0A-CDL",
+          articleCode: "491902797",
+        },
+        {
+          model: "BPL 7W SENSOR LED BULB BB07SN0B-CDL",
+          articleCode: "491902827",
+        },
+        {
+          model: "BPL 20W REGULAR LED BATTEN BN20RG0A-CDL",
+          articleCode: "491902794",
+        },
+        {
+          model: "BPL 22W REGULAR LED BATTEN BN22RG0A-CDL",
+          articleCode: "491902795",
+        },
+        {
+          model: "BPL 30W ALUMINIUM BATTEN BN30AL0A-CDL",
+          articleCode: "491902796",
+        },
+        {
+          model: "BPL 20W LED EMERGNCY BATTEN BN20EM0B-CDL",
+          articleCode: "491902829",
+        },
+        {
+          model: "BPL 20W SENSOR LED BATTEN BN20SN0B-CDL",
+          articleCode: "491902828",
+        },
+        {
+          model: "BPL 32 HD GOOGLE ONKYO TV 32H-E5340 (INX OC)",
+          articleCode: "494410394",
+        },
+        {
+          model: "BPL 32 HD GOOGLE ONKYO TV 32H-E5341 (BOE OC)",
+          articleCode: "494410395",
+        },
+        {
+          model: "BPL 43 UHD WebOS QLED ONKYO TV 43U-E7540",
+          articleCode: "494410398",
+        },
+        {
+          model: "BPL 32 HD WebOS ONKYO TV 32H-E7540",
+          articleCode: "494410396",
+        },
+        {
+          model: "BPL 32 HD LINUX LITE SMART TV 32H-E2302",
+          articleCode: "494410512",
+        },
+        {
+          model: "BPL 32 HD LINUX SMART TV 32H-E2320",
+          articleCode: "494410514",
+        },
+        {
+          model: "BPL 32 HD LINUX SMART TV 32H-E2321",
+          articleCode: "494410515",
+        },
+        // ... imagine 3,000 more ...
+      ].map((product) => {
+        return {
+          ...product,
+          normalizedModel: normalizeString(product.model),
+        };
+      });
+
+      const searchInput = document.getElementById("searchInput");
+      const resultsContainer = document.getElementById("resultsContainer");
+      const quoteEl = document.getElementById("quote");
+      const fuzzyThreshold = 2; // Maximum allowed distance for fuzzy matches
+
+      // ------------------------------------------------------------------------
+      // EVENT: On typing, show advanced search results
+      // ------------------------------------------------------------------------
+      searchInput.addEventListener("input", handleSearch);
+
+      function handleSearch() {
+        const rawQuery = searchInput.value.trim();
+        if (!rawQuery) {
+          // Show quote, hide results
+          quoteEl.classList.remove("hidden");
+          resultsContainer.style.display = "none";
+          resultsContainer.innerHTML = "";
+          return;
+        }
+
+        // Hide quote
+        quoteEl.classList.add("hidden");
+
+        // Normalize query
+        const query = normalizeString(rawQuery);
+
+        // 1) Attempt Partial Matching
+        let matched = productData.filter(
+          (item) =>
+            item.normalizedModel.includes(query) ||
+            item.articleCode.toLowerCase().includes(query)
+        );
+
+        // 2) If partial matching yields no results, attempt Fuzzy
+        if (matched.length === 0) {
+          matched = productData.filter((item) => {
+            // Fuzzy check between normalizedModel and query
+            const distance = levenshtein(item.normalizedModel, query);
+            // Also allow fuzzy check on articleCode if desired
+            const distanceCode = levenshtein(
+              item.articleCode.toLowerCase(),
+              query
+            );
+            return distance <= fuzzyThreshold || distanceCode <= fuzzyThreshold;
+          });
+        }
+
+        // If still no results, clear and hide
+        if (matched.length === 0) {
+          resultsContainer.innerHTML = "";
+          resultsContainer.style.display = "none";
+          return;
+        }
+
+        // Build results UI
+        resultsContainer.innerHTML = "";
+        matched.forEach((product) => {
+          const resultItem = document.createElement("div");
+          resultItem.classList.add("result-item");
+
+          const title = document.createElement("div");
+          title.classList.add("result-title");
+          title.textContent = product.model;
+
+          const code = document.createElement("div");
+          code.classList.add("result-code");
+          code.textContent = `Article Code: ${product.articleCode}`;
+
+          resultItem.appendChild(title);
+          resultItem.appendChild(code);
+          resultsContainer.appendChild(resultItem);
+        });
+
+        // Show results container
+        resultsContainer.style.display = "block";
+      }
+
+      // ------------------------------------------------------------------------
+      // NORMALIZE A STRING:
+      // - Lowercase
+      // - Remove all non-alphanumeric characters (dashes, spaces, parentheses, etc.)
+      // - (Optional) Could remove brand prefix "bpl" if you want
+      // ------------------------------------------------------------------------
+      function normalizeString(str) {
+        return str.toLowerCase().replace(/[^a-z0-9]/gi, ""); // remove non-alphanumerics
+      }
+
+      // ------------------------------------------------------------------------
+      // LEVENSHTEIN DISTANCE (Fuzzy Matching):
+      // Calculates how many edits (insert, delete, substitute)
+      // are needed to transform one string into another
+      // ------------------------------------------------------------------------
+      function levenshtein(a, b) {
+        // Dynamic programming approach
+        const dp = [];
+        for (let i = 0; i <= a.length; i++) {
+          dp[i] = [i];
+        }
+        for (let j = 0; j <= b.length; j++) {
+          dp[0][j] = j;
+        }
+
+        for (let i = 1; i <= a.length; i++) {
+          for (let j = 1; j <= b.length; j++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            dp[i][j] = Math.min(
+              dp[i - 1][j] + 1, // deletion
+              dp[i][j - 1] + 1, // insertion
+              dp[i - 1][j - 1] + cost // substitution
+            );
+          }
+        }
+        return dp[a.length][b.length];
+      }
+    </script>
+  </body>
+</html>

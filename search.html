@@ -27,7 +27,7 @@
         min-height: 100vh;
       }
       a {
-        text-decoration: none;
+        text-decoration: none; /* Remove underline */
         color: inherit;
       }
 
@@ -168,10 +168,10 @@
         color: #e5e7eb;
       }
 
-      /* QUOTE (moved down, bigger) */
+      /* QUOTE (moved down, made bigger) */
       .quote {
-        margin-top: 50px; /* space above */
-        font-size: 2rem; /* bigger text */
+        margin-top: 50px; /* more space above */
+        font-size: 2rem;  /* bigger text */
         font-weight: 600;
         font-style: italic;
         color: #e2e8f0;
@@ -269,7 +269,7 @@
         <div id="resultsContainer" class="results-container"></div>
       </div>
 
-      <!-- QUOTE -->
+      <!-- QUOTE (moved below) -->
       <div id="quote" class="quote">"Nothing is impossible"</div>
     </main>
 
@@ -283,8 +283,8 @@
       }
 
       // ------------------------------------------------------------------------
-      // SAMPLE DATA (Truncated for brevity). Each product will have "model", "articleCode"
-      // For demonstration, some items include "8.0 Kg" or "Android Smart TV"
+      // SAMPLE DATA (Imagine 3,000+ items)
+      // Precompute a normalized version of each model to improve performance
       // ------------------------------------------------------------------------
       const productData = [
         {
@@ -4742,109 +4742,67 @@
   {
     "model":"BPL Room Heater Quartz BRHQ2RR",
     "articleCode":494460042
-  },
-      ];
-
-      // Precompute tokens for each product to speed up searching
-      const products = productData.map((p) => ({
-        ...p,
-        tokens: tokenize(p.model), // e.g. ["bpl", "43", "fhd", "android", "smart", "tv", "43fa4300"]
-      }));
-
-      // Key synonyms or expansions
-      // For example, if user types "tv" we want to also match "smart tv" or "android tv"
-      // If user types "8 kg", we want to match "8.0kg"
-      // These can become quite advanced, but let's do some basic expansions:
-      const synonyms = {
-        tv: [
-          "television",
-          "smarttv",
-          "smart",
-          "androidtv",
-          "ledtv",
-          "androidsmarttv",
-        ],
-        kg: ["kg", "kgs", "kilogram", "kilograms"],
-        // Could add more synonyms as needed...
-      };
+  }
+      ].map((product) => {
+        return {
+          ...product,
+          normalizedModel: normalizeString(product.model),
+        };
+      });
 
       const searchInput = document.getElementById("searchInput");
       const resultsContainer = document.getElementById("resultsContainer");
       const quoteEl = document.getElementById("quote");
-      const fuzzyThreshold = 2; // Maximum allowed Levenshtein distance
+      const fuzzyThreshold = 2; // Maximum allowed distance for fuzzy matches
 
-      // ------------------------------------------------------------------------
-      // EVENT: On typing, show advanced search
-      // ------------------------------------------------------------------------
+      // On typing, show advanced search results
       searchInput.addEventListener("input", handleSearch);
 
       function handleSearch() {
         const rawQuery = searchInput.value.trim();
         if (!rawQuery) {
-          showQuote(true);
+          // Show quote, hide results
+          quoteEl.classList.remove("hidden");
           resultsContainer.style.display = "none";
           resultsContainer.innerHTML = "";
           return;
         }
 
-        showQuote(false);
+        // Hide quote
+        quoteEl.classList.add("hidden");
 
-        // 1) Tokenize user query
-        // e.g. "8 kg" => ["8", "kg"]
-        //      "ANDROID TV" => ["android", "tv"]
-        const queryTokens = tokenize(rawQuery);
+        // Normalize query
+        const query = normalizeString(rawQuery);
 
-        // 2) Expand synonyms: each token can become multiple tokens
-        // e.g. "tv" => ["tv","television","smarttv","smart","androidtv","ledtv","androidsmarttv"]
-        let expandedQueryTokens = [];
-        queryTokens.forEach((token) => {
-          const expanded = synonyms[token] || [];
-          if (expanded.length > 0) {
-            expandedQueryTokens.push(token, ...expanded);
-          } else {
-            expandedQueryTokens.push(token);
-          }
-        });
+        // 1) Attempt Partial Matching
+        let matched = productData.filter(
+          (item) =>
+            item.normalizedModel.includes(query) ||
+            String(item.articleCode).toLowerCase().includes(query)
+        );
 
-        // 3) Filter products with a more advanced approach:
-        //    a) For each product, see if (some or all) expanded query tokens
-        //       partially or fuzzily match the product's tokens
-        let matched = products.filter((product) => {
-          // We'll do a simple approach: require *all* original query tokens (non-expanded) to be found (in some fuzzy form) in product tokens
-          // But we *also* accept a match if any synonyms match.
-          // This is flexible – you can do partial matching, scoring, etc.
-
-          return queryTokens.every((userToken) => {
-            // If direct or fuzzy match with product tokens => pass
-            // or if synonyms expansions do
-            // We'll see if there's at least one token in product.tokens that matches userToken or the expanded synonyms of userToken
-            const expandedForThisUserToken = synonyms[userToken]
-              ? [userToken, ...synonyms[userToken]]
-              : [userToken];
-
-            // If product.tokens has a match for any token in expandedForThisUserToken => pass
-            return expandedForThisUserToken.some((expandedTok) => {
-              // We'll see if product.tokens has a "close enough" match
-              // i.e. direct substring or fuzzy
-              return product.tokens.some((prodTok) => {
-                // direct substring or fuzzy
-                if (prodTok.includes(expandedTok)) return true;
-                // or fuzzy <= threshold
-                const dist = levenshtein(prodTok, expandedTok);
-                return dist <= fuzzyThreshold;
-              });
-            });
+        // 2) If partial matching yields no results, attempt Fuzzy
+        if (matched.length === 0) {
+          matched = productData.filter((item) => {
+            // Fuzzy check between normalizedModel and query
+            const distance = levenshtein(item.normalizedModel, query);
+            // Also allow fuzzy check on articleCode
+            const distanceCode = levenshtein(
+              String(item.articleCode).toLowerCase(),
+              query
+            );
+            return distance <= fuzzyThreshold || distanceCode <= fuzzyThreshold;
           });
-        });
+        }
 
-        // If no match found, matched = []
+        // If still no results, clear and hide
         if (matched.length === 0) {
           resultsContainer.innerHTML = "";
           resultsContainer.style.display = "none";
           return;
         }
 
-        // BUILD & SHOW
+        // Build results UI
         resultsContainer.innerHTML = "";
         matched.forEach((product) => {
           const resultItem = document.createElement("div");
@@ -4862,86 +4820,19 @@
           resultItem.appendChild(code);
           resultsContainer.appendChild(resultItem);
         });
+
+        // Show results container
         resultsContainer.style.display = "block";
       }
 
-      // Show or hide the quote
-      function showQuote(isVisible) {
-        if (isVisible) {
-          quoteEl.classList.remove("hidden");
-        } else {
-          quoteEl.classList.add("hidden");
-        }
+      // Normalize a string:
+      // - Lowercase
+      // - Remove all non-alphanumeric characters
+      function normalizeString(str) {
+        return str.toLowerCase().replace(/[^a-z0-9]/gi, "");
       }
 
-      // ------------------------------------------------------------------------
-      // TOKENIZE
-      //  - Lowercase
-      //  - Remove punctuation except decimals in numeric (like "8.0")
-      //  - Remove spaces
-      //  - If we detect something like "8.0kg", we turn it into "80kg" or "8kg"
-      //  - Splits on spaces, returns array
-      // ------------------------------------------------------------------------
-      function tokenize(str) {
-        // Lowercase everything
-        str = str.toLowerCase();
-
-        // Replace certain punctuations with a space so we can split
-        // Keep decimal '.' but only if it's in the middle of digits
-        // For simplicity, let's remove all punctuation except '.' if between digits
-        // We'll do two steps: remove all punctuation, then fix decimal merges
-        // A simpler approach is to do a regex that tries to keep numeric decimals together
-        // The approach can vary widely. This is just a demonstration.
-
-        // Step 1: unify spaces
-        str = str.replace(/\s+/g, " ");
-
-        // Step 2: split on space -> tokens
-        const rawTokens = str
-          .split(" ")
-          .map((t) => t.trim())
-          .filter(Boolean);
-
-        // Step 3: For each token, remove punctuation not in the middle of digits
-        // e.g. "8.0kg" => "8.0kg" -> "80kg" or "8kg" (choose your preference)
-        // We'll remove "." if it’s not strictly between digits:
-        // Example: "8.0" => we remove the dot => "80" but then we might want "8" or "80"?
-        // Let’s unify that "8.0" => "8"
-        // So we'll do a small custom logic.
-
-        let finalTokens = rawTokens.map((token) => {
-          // If token has digit(s).digit(s), remove the decimal if .0
-          // e.g. "8.0" => "8"
-          // e.g. "8.5" => "85"? Might be weird. But let's do "85". Or we keep it as "8.5"?
-          // This is domain-specific. We'll do an approach: if it’s 8.0 => 8, else remove the dot.
-          // If the user typed "8.5", we might keep "85"? Then fuzzy matching or synonyms can handle it.
-
-          // A simpler approach: remove all punctuation except letters/digits:
-          // token = token.replace(/[^a-z0-9]/gi, "");
-
-          // Let's do something slightly more clever:
-          // 1) If the token matches something like   ^(\d+)\.(\d+)(kg)?$   we remove the decimal if .0, else keep but skip the dot
-          // 2) Else, remove all other punctuation
-          let temp = token.replace(/[^a-z0-9.]/gi, ""); // keep only letters, digits, '.'
-
-          // If there's a .0 => remove
-          temp = temp.replace(/\.0\b/g, "");
-          // Now remove leftover '.' if you want:
-          temp = temp.replace(/\./g, "");
-
-          return temp;
-        });
-
-        // finalTokens might contain empty strings if we had weird punctuation
-        finalTokens = finalTokens.filter(Boolean);
-
-        return finalTokens;
-      }
-
-      // ------------------------------------------------------------------------
-      // LEVENSHTEIN DISTANCE
-      //  Basic DP approach
-      // ------------------------------------------------------------------------
+      // Levenshtein Distance (fuzzy matching)
       function levenshtein(a, b) {
         const dp = [];
         for (let i = 0; i <= a.length; i++) {

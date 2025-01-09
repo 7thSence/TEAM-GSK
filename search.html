@@ -131,22 +131,6 @@
         border-color: #38bdf8;
       }
 
-      /* QUOTE */
-      .quote {
-        margin: 30px 0;
-        font-size: 1.8rem;
-        font-weight: 600;
-        font-style: italic;
-        color: #e2e8f0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        max-width: 90%;
-        line-height: 1.4;
-      }
-      .quote.hidden {
-        opacity: 0;
-        visibility: hidden;
-      }
-
       /* RESULTS CONTAINER */
       .results-container {
         position: absolute;
@@ -184,6 +168,22 @@
         color: #e5e7eb;
       }
 
+      /* QUOTE (moved down, made bigger) */
+      .quote {
+        margin-top: 50px; /* more space above */
+        font-size: 2rem;  /* bigger text */
+        font-weight: 600;
+        font-style: italic;
+        color: #e2e8f0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        max-width: 90%;
+        line-height: 1.4;
+      }
+      .quote.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
       /* CUSTOM SCROLLBAR */
       .results-container::-webkit-scrollbar {
         width: 8px;
@@ -218,7 +218,7 @@
           padding: 15px;
         }
         .quote {
-          font-size: 1.3rem;
+          font-size: 1.5rem;
         }
       }
     </style>
@@ -269,7 +269,7 @@
         <div id="resultsContainer" class="results-container"></div>
       </div>
 
-      <!-- Quote (Change daily as you wish) -->
+      <!-- QUOTE (moved below) -->
       <div id="quote" class="quote">"Nothing is impossible"</div>
     </main>
 
@@ -283,7 +283,7 @@
       }
 
       // ------------------------------------------------------------------------
-      // SAMPLE DATA (Imagine 3,000 items)
+      // SAMPLE DATA (Imagine 3,000+ items)
       // Precompute a normalized version of each model to improve performance
       // ------------------------------------------------------------------------
       const productData = [
@@ -4743,7 +4743,6 @@
     "model":"BPL Room Heater Quartz BRHQ2RR",
     "articleCode":494460042
   }
-        
       ].map((product) => {
         return {
           ...product,
@@ -4756,9 +4755,7 @@
       const quoteEl = document.getElementById("quote");
       const fuzzyThreshold = 2; // Maximum allowed distance for fuzzy matches
 
-      // ------------------------------------------------------------------------
-      // EVENT: On typing, show advanced search results
-      // ------------------------------------------------------------------------
+      // On typing, show advanced search results
       searchInput.addEventListener("input", handleSearch);
 
       function handleSearch() {
@@ -4781,7 +4778,7 @@
         let matched = productData.filter(
           (item) =>
             item.normalizedModel.includes(query) ||
-            item.articleCode.toLowerCase().includes(query)
+            String(item.articleCode).toLowerCase().includes(query)
         );
 
         // 2) If partial matching yields no results, attempt Fuzzy
@@ -4789,9 +4786,9 @@
           matched = productData.filter((item) => {
             // Fuzzy check between normalizedModel and query
             const distance = levenshtein(item.normalizedModel, query);
-            // Also allow fuzzy check on articleCode if desired
+            // Also allow fuzzy check on articleCode
             const distanceCode = levenshtein(
-              item.articleCode.toLowerCase(),
+              String(item.articleCode).toLowerCase(),
               query
             );
             return distance <= fuzzyThreshold || distanceCode <= fuzzyThreshold;
@@ -4828,23 +4825,15 @@
         resultsContainer.style.display = "block";
       }
 
-      // ------------------------------------------------------------------------
-      // NORMALIZE A STRING:
+      // Normalize a string:
       // - Lowercase
-      // - Remove all non-alphanumeric characters (dashes, spaces, parentheses, etc.)
-      // - (Optional) Could remove brand prefix "bpl" if you want
-      // ------------------------------------------------------------------------
+      // - Remove all non-alphanumeric characters
       function normalizeString(str) {
-        return str.toLowerCase().replace(/[^a-z0-9]/gi, ""); // remove non-alphanumerics
+        return str.toLowerCase().replace(/[^a-z0-9]/gi, "");
       }
 
-      // ------------------------------------------------------------------------
-      // LEVENSHTEIN DISTANCE (Fuzzy Matching):
-      // Calculates how many edits (insert, delete, substitute)
-      // are needed to transform one string into another
-      // ------------------------------------------------------------------------
+      // Levenshtein Distance (fuzzy matching)
       function levenshtein(a, b) {
-        // Dynamic programming approach
         const dp = [];
         for (let i = 0; i <= a.length; i++) {
           dp[i] = [i];
